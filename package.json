@@ -11,6 +11,7 @@
     "react-scripts": "1.0.6"
   },
   "scripts": {
+    "dev": "node server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
