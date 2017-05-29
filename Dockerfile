@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:base-6
+FROM mhart/alpine-node:6
 
 WORKDIR /src
 ADD . .
@@ -7,7 +7,7 @@ ADD . .
 # RUN apk add --no-cache make gcc g++ python
 
 # If you need npm, don't use a base tag
-# RUN npm install
+RUN npm install
 
 EXPOSE 3000
 
