@@ -8,7 +8,8 @@ ADD . .
 
 # If you need npm, don't use a base tag
 RUN npm install
+RUN npm run build
 
 EXPOSE 3000
 
-CMD node server.js & PORT=3001 BROWSER=none node_modules/.bin/react-scripts start
+CMD node server.js

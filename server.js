@@ -3,10 +3,12 @@ var proxy = require('express-http-proxy');
 
 var app = express()
 
-app.get('/hello', function (req, res) {
-  res.send('Hello World')
-})
+var mode = 'static'
 
-app.use('/', proxy('localhost:3001'));
+if(mode === 'dynamic') {
+  app.use('/', proxy('localhost:3001'));
+} else {
+  app.use(express.static('build'))
+}
 
 app.listen(3000)
