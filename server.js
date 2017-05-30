@@ -3,6 +3,8 @@ var proxy = require('express-http-proxy');
 
 var app = express()
 
+var PORT = 3000
+
 var mode = 'static'
 
 if(mode === 'dynamic') {
@@ -11,4 +13,5 @@ if(mode === 'dynamic') {
   app.use(express.static('build'))
 }
 
-app.listen(3000)
+console.log("running server on port " + PORT)
+app.listen(PORT)
