@@ -9,8 +9,6 @@
     "react-dom": "^15.5.4",
     "react-scripts": "1.0.6"
   },
-  "devDependencies": {
-  },
   "scripts": {
     "dev": "node server.js",
     "start": "PORT=3001 react-scripts start",
