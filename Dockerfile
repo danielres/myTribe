@@ -28,8 +28,7 @@ ADD . .
 
 
 # npm install for low-memory environments:
-RUN apk update
-RUN apk add bash
+RUN apk update && apk add bash
 RUN /bin/bash npm-f3-install.sh --silent
 
 RUN npm run build
