@@ -13,12 +13,9 @@ ADD . .
 # RUN /bin/bash npm-f3-install.sh production --silent
 # RUN /bin/bash npm-f3-install.sh development --silent
 
-RUN apk add --no-cache bash git openssh
+# RUN apk add --no-cache bash git openssh
 
-RUN git status
-RUN git fetch --all
-RUN git reset --hard origin/master
-RUN git status
+RUN cat src/App.js
 
 RUN npm i -g yarn && yarn install && yarn run build
 
