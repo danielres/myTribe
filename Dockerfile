@@ -25,12 +25,12 @@ ADD . .
 # RUN echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 # RUN echo '==='
 
-
-
 # npm install for low-memory environments:
 RUN apk update && apk add bash
-RUN /bin/bash npm-f3-install.sh --silent
+RUN /bin/bash npm-f3-install.sh production --silent
+RUN /bin/bash npm-f3-install.sh development --silent
 
+RUN ls node_modules
 RUN ls node_modules/.bin
 RUN node_modules/.bin/react-scripts build
 
