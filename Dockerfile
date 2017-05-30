@@ -2,6 +2,7 @@ FROM mhart/alpine-node:6
 
 WORKDIR /src
 ADD . .
+# COPY npm-f3-install.sh npm-f3-install.sh
 
 # If you have native dependencies, you'll need extra tools
 # RUN apk add --no-cache make gcc g++ python
@@ -26,7 +27,11 @@ ADD . .
 
 
 
-RUN npm install
+# npm install for low-memory environments:
+RUN apk update
+RUN apk add bash
+RUN /bin/bash npm-f3-install.sh
+
 RUN npm run build
 
 EXPOSE 3000
