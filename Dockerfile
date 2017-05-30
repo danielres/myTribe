@@ -31,8 +31,9 @@ ADD . .
 RUN apk update && apk add bash
 RUN /bin/bash npm-f3-install.sh --silent
 
-#RUN ./node_modules/.bin/react-scripts build
+RUN ls node_modules/.bin
+RUN node_modules/.bin/react-scripts build
 
-#EXPOSE 3000
+EXPOSE 3000
 
-#CMD node server.js
+CMD node server.js
