@@ -13,7 +13,7 @@ ADD . .
 # RUN /bin/bash npm-f3-install.sh production --silent
 # RUN /bin/bash npm-f3-install.sh development --silent
 
-RUN npm i -g yarn && yarn run build
+RUN npm i -g yarn && yarn install && yarn run build
 
 EXPOSE 3000
 
