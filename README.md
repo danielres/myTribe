@@ -20,14 +20,24 @@ In production:
 - First, the frontend is compiled to static assets. 
 - The express server still handles the api calls, but now serves the frontend as simple static files.
 
+Deployment:
+
+- The source code is hosted on Github. 
+- Th build and deployment are triggered with a simple `git push` to the master branch.
+- This example uses the Docker cloud service to watch the github repo, and handle builds and deploys automatically, but you could also probably use other CI tools instead, like Travis, Codeship,...
 
 ## Setting up the Docker host:
 
-For this project, the Docker host is a simple Digital Ocean 5$/month droplet.
-This is the cheapest option available and comes with limitations that require some little tweaks. The problem is that the droplet doesn't have enough RAM to be able to complete the `npm install` (or `yarn install`) command. Luckily, we have enough hard disk space to set up a swapfile, which solves our probem.
+For this project, the Docker host is a minimal Digital Ocean droplet for 5$/month (512 mb RAM, 20Gb Disk) running a Digital Ocean's standard Ubuntu 14.04.
+
+This is the cheapest option available and comes with limitations that require some little tweaks. The main problem is that the droplet doesn't have enough RAM to be able to complete the `npm install` (or `yarn install`) command. 
+
+Luckily, we have enough hard more than enough disk space for us to set up a 1Gb swapfile, which solves our probem.
 
 ### Setting up the swapfile (tested on Ubuntu):
 
 Access the host's terminal through ssh, then run the following command on the host:
 
 `fallocate -l 1G /swapfile && chmod 600 /swapfile && mkswap /swapfile && sudo swapon /swapfile && swapon --show`
+
+This will create the swapfile needed for the node modules installation to complete.
