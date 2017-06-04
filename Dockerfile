@@ -6,17 +6,6 @@ COPY . .
 # If you have native dependencies, you'll need extra tools
 # RUN apk add --no-cache make gcc g++ python
 
-# If you need npm, don't use a base tag
-
-# npm install for low-memory environments:
-# RUN apk update && apk add bash
-# RUN /bin/bash npm-f3-install.sh production --silent
-# RUN /bin/bash npm-f3-install.sh development --silent
-
-# RUN apk add --no-cache bash git openssh
-
-RUN cat src/App.js
-
 RUN npm i -g yarn && yarn install && yarn run build
 
 EXPOSE 3000
