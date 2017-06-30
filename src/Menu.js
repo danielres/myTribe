@@ -53,6 +53,8 @@ const Menu = ({ collapsed, toggleCollapsed }) => (
 );
 
 const Connected = connectLean({
+  scope: "Menu",
+
   getInitialState() {
     return { collapsed: true };
   },
