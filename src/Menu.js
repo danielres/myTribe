@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connectLean } from 'lean-redux';
 import styled from 'styled-components';
 
 const entries = [
@@ -9,6 +10,10 @@ const entries = [
 const Wrapper = styled.section`
   background: #000;
   color: #fff;
+`;
+
+const Entries = styled.div`
+  display: ${props => props.collapsed ? 'none' : 'block'};
 `;
 
 const Entry = styled.div`
@@ -23,14 +28,31 @@ class Menu extends Component {
   render() {
     return (
       <Wrapper>
-        {entries.map((entry) =>
-          <Entry key={entry.id}>
-            {entry.name}
-          </Entry>
-        )}
+        <button onClick={this.props.toggleCollapsed}>
+          ☰
+        </button>
+
+        <Entries collapsed={this.props.collapsed}>
+          {entries.map((entry) =>
+            <Entry key={entry.id}>
+              {entry.name}
+            </Entry>
+          )}
+        </Entries>
       </Wrapper>
     );
   }
 }
 
-export default Menu;
+const Connected = connectLean({
+  getInitialState() {
+    return { collapsed: true };
+  },
+
+  toggleCollapsed(e) {
+    e.preventDefault();
+    this.setState({ collapsed: !this.state.collapsed });
+  },
+})(Menu);
+
+export default Connected;
