@@ -1,8 +1,0 @@
-.Entry {
-  padding: 20px;
-  border-bottom: 1px solid gray;
-}
-
-.Entry:first-child {
-  border-top: 1px solid gray;
-}
