@@ -9,28 +9,40 @@ const entries = [
 
 const Wrapper = styled.section`
   background: #000;
+`;
+
+const ButtonWrapper = styled.div`
+  text-align: right;
+  padding: 10px;
+`;
+
+const Button = styled.button`
+  font-size: 18px;
+  border: 0;
+  background: transparent;
   color: #fff;
+  outline: 0;
 `;
 
 const Entries = styled.div`
+  color: #fff;
   display: ${props => props.collapsed ? 'none' : 'block'};
 `;
 
 const Entry = styled.div`
   padding: 20px;
-  border-bottom: 1px solid #aaa;
-  &:last-child {
-    border-bottom: 0;
-  }
+  border-top: 1px solid #aaa;
 `;
 
 class Menu extends Component {
   render() {
     return (
       <Wrapper>
-        <button onClick={this.props.toggleCollapsed}>
-          ☰
-        </button>
+        <ButtonWrapper>
+          <Button onClick={this.props.toggleCollapsed}>
+            ☰
+          </Button>
+        </ButtonWrapper>
 
         <Entries collapsed={this.props.collapsed}>
           {entries.map((entry) =>
