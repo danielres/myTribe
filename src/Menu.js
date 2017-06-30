@@ -34,27 +34,23 @@ const Entry = styled.div`
   border-top: 1px solid #aaa;
 `;
 
-class Menu extends Component {
-  render() {
-    return (
-      <Wrapper>
-        <ButtonWrapper>
-          <Button onClick={this.props.toggleCollapsed}>
-            ☰
-          </Button>
-        </ButtonWrapper>
+const Menu = ({ collapsed, toggleCollapsed }) => (
+  <Wrapper>
+    <ButtonWrapper>
+      <Button onClick={toggleCollapsed}>
+        ☰
+      </Button>
+    </ButtonWrapper>
 
-        <Entries collapsed={this.props.collapsed}>
-          {entries.map((entry) =>
-            <Entry key={entry.id}>
-              {entry.name}
-            </Entry>
-          )}
-        </Entries>
-      </Wrapper>
-    );
-  }
-}
+    <Entries collapsed={collapsed}>
+      {entries.map((entry) =>
+        <Entry key={entry.id}>
+          {entry.name}
+        </Entry>
+      )}
+    </Entries>
+  </Wrapper>
+);
 
 const Connected = connectLean({
   getInitialState() {
