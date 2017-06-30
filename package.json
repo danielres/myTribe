@@ -5,8 +5,11 @@
   "dependencies": {
     "express": "^4.15.3",
     "express-http-proxy": "^1.0.3",
+    "lean-redux": "^3.3.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.1",
     "styled-components": "^2.1.0"
   },
   "devDependencies": {
