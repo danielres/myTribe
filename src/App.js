@@ -7,8 +7,9 @@ import { Route } from 'react-router'
 import { ConnectedRouter, push } from 'react-router-redux'
 import { history } from './store';
 
-import ActivityLog from './ActivityLog';
 import Menu from './Menu';
+import ActivityLog from './ActivityLog';
+import Me from './Me';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <div>
             <Menu />
             <Route exact path="/" component={ActivityLog}/>
+            <Route exact path="/me" component={Me}/>
           </div>
         </ConnectedRouter>
       </Provider>
