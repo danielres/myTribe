@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import PageTitle from './shared/PageTitle';
+
 const entries = [
   { id: 1, name: "Entry 1"},
   { id: 2, name: "Entry 2"},
@@ -21,7 +23,8 @@ class ActivityLog extends Component {
   render() {
     return (
       <Wrapper>
-        <h1>ActivityLog</h1>
+        <PageTitle>Activity</PageTitle>
+
         <div className="entries">
           {entries.map((entry) =>
             <Entry key={entry.id}>

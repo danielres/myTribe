@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import PageTitle from './shared/PageTitle';
+
 const entries = [
   { id: 1, name: "Name"},
   { id: 2, name: "Email"},
@@ -27,7 +29,8 @@ class Me extends Component {
   render() {
     return (
       <Wrapper>
-        <h1>Me</h1>
+        <PageTitle>Me</PageTitle>
+
         <div className="entries">
           {entries.map((entry) =>
             <Entry key={entry.id}>
