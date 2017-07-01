@@ -1,13 +1,24 @@
 import React from 'react';
 import { connectLean } from 'lean-redux';
-import styled from 'styled-components';
-import MdBurger from 'react-icons/lib/md/menu';
 import { push } from 'react-router-redux';
+import styled from 'styled-components';
+
+import MdBurger from 'react-icons/lib/md/menu';
+import MdHome from 'react-icons/lib/md/home';
+import MdFavorite from 'react-icons/lib/md/favorite';
+import MdAccountCircle from 'react-icons/lib/md/account-circle';
 
 const entries = [
-  { id: 1, name: 'Home', path: '/' },
-  { id: 2, name: 'Me', path: '/me' },
+  { id: 'home', name: 'Home', path: '/' },
+  { id: 'members', name: 'Members', path: '/members' },
+  { id: 'me', name: 'Me', path: '/me' },
 ];
+
+const iconFor = (id) => ({
+  home: <MdHome />,
+  members: <MdFavorite />,
+  me: <MdAccountCircle />,
+}[id])
 
 const Wrapper = styled.section`
   background: #000;
@@ -47,6 +58,8 @@ const Menu = ({ collapsed, toggleCollapsed, linkTo }) => (
     <Entries collapsed={collapsed}>
       {entries.map((entry) =>
         <Entry key={entry.id} onClick={() => linkTo(entry.path)}>
+          {iconFor(entry.id)}
+          {' '}
           {entry.name}
         </Entry>
       )}
