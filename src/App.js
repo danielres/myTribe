@@ -9,6 +9,7 @@ import { history } from './store';
 
 import Menu from './Menu';
 import ActivityLog from './ActivityLog';
+import Members from './Members';
 import Me from './Me';
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
           <div>
             <Menu />
             <Route exact path="/" component={ActivityLog}/>
+            <Route exact path="/members" component={Members}/>
             <Route exact path="/me" component={Me}/>
           </div>
         </ConnectedRouter>
