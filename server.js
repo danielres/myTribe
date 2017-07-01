@@ -9,6 +9,8 @@ var mode = 'static'
 
 if(mode === 'dynamic') {
   app.use('/', proxy('localhost:3001'));
+  app.use('/me', proxy('localhost:3001'));
+  app.use('/members', proxy('localhost:3001'));
 } else {
   app.use(express.static('build'))
 }
