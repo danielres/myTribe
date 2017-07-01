@@ -9,9 +9,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
+leanReducer.setGlobalScope('lean');
+
 const store = createStore(
-  leanReducer,
   combineReducers({
+    lean: leanReducer,
     router: routerReducer,
   }),
   composeEnhancers(applyMiddleware(middleware)),
