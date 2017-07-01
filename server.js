@@ -5,7 +5,7 @@ const app = express()
 
 const PORT = 3000
 
-const mode = 'dynamic'
+const mode = process.env.ASSETS_MODE
 
 if(mode === 'dynamic') {
   app.use('/', proxy('localhost:3001'));
