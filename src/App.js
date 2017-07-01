@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import { Route } from 'react-router'
-import { ConnectedRouter, push } from 'react-router-redux'
+import { ConnectedRouter } from 'react-router-redux'
 import { history } from './store';
 
 import Menu from './Menu';
