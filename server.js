@@ -1,11 +1,11 @@
-var express = require('express')
-var proxy = require('express-http-proxy');
+import express from 'express';
+import proxy from 'express-http-proxy';
 
-var app = express()
+const app = express()
 
-var PORT = 3000
+const PORT = 3000
 
-var mode = 'static'
+const mode = 'dynamic'
 
 if(mode === 'dynamic') {
   app.use('/', proxy('localhost:3001'));
