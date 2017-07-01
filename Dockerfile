@@ -10,4 +10,4 @@ RUN npm i -g yarn && yarn install && yarn run build
 
 EXPOSE 3000
 
-CMD node server.js
+CMD node -r ./babelhook.js ./server.js
