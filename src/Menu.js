@@ -47,7 +47,13 @@ const Entry = styled.div`
   border-top: 1px solid #aaa;
 `;
 
-const Menu = ({ collapsed, toggleCollapsed, linkTo }) => (
+const Icon = styled.div`
+  display: inline-block;
+  font-size: 25px;
+  margin-right: 20px;
+`;
+
+const Menu = ({ collapsed, toggleCollapsed, handleClick }) => (
   <Wrapper>
     <ButtonWrapper>
       <Button onClick={toggleCollapsed}>
@@ -57,9 +63,11 @@ const Menu = ({ collapsed, toggleCollapsed, linkTo }) => (
 
     <Entries collapsed={collapsed}>
       {entries.map((entry) =>
-        <Entry key={entry.id} onClick={() => linkTo(entry.path)}>
-          {iconFor(entry.id)}
-          {' '}
+        <Entry
+          key={entry.id}
+          onClick={() => handleClick(entry.path)}
+        >
+          <Icon>{iconFor(entry.id)}</Icon>
           {entry.name}
         </Entry>
       )}
@@ -79,8 +87,9 @@ const Connected = connectLean({
     this.setState({ collapsed: !this.state.collapsed });
   },
 
-  linkTo(path) {
+  handleClick(path) {
     this.dispatch(push(path));
+    this.setState({ collapsed: true });
   },
 })(Menu);
 
