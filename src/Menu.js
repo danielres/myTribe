@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import MdBurger from 'react-icons/lib/md/menu';
 
 const entries = [
-  { id: 1, name: "Home"},
-  { id: 2, name: "Something"},
+  { id: 1, name: 'Home' },
+  { id: 2, name: 'Me' },
 ];
 
 const Wrapper = styled.section`
@@ -54,7 +54,7 @@ const Menu = ({ collapsed, toggleCollapsed }) => (
 );
 
 const Connected = connectLean({
-  scope: "Menu",
+  scope: 'Menu',
 
   getInitialState() {
     return { collapsed: true };
