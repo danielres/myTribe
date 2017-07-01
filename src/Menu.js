@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connectLean } from 'lean-redux';
 import styled from 'styled-components';
+import MdBurger from 'react-icons/lib/md/menu';
 
 const entries = [
   { id: 1, name: "Home"},
@@ -38,7 +39,7 @@ const Menu = ({ collapsed, toggleCollapsed }) => (
   <Wrapper>
     <ButtonWrapper>
       <Button onClick={toggleCollapsed}>
-        ☰
+        <MdBurger />
       </Button>
     </ButtonWrapper>
 
