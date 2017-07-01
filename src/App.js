@@ -18,6 +18,7 @@ const Wrapper = styled.section`
   background: #fff;
   margin: auto;
   max-width: 425px;
+  outline: 1px solid #aaa;
 `;
 
 injectGlobal`

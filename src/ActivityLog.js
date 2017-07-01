@@ -13,10 +13,7 @@ const Wrapper = styled.section`
 
 const Entry = styled.div`
   padding: 20px;
-  border-bottom: 1px solid gray;
-  &:first-child {
-    border-top: 1px solid gray;
-  }
+  border-top: 1px solid #aaa;
 `;
 
 class ActivityLog extends Component {
