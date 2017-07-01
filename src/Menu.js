@@ -2,10 +2,11 @@ import React from 'react';
 import { connectLean } from 'lean-redux';
 import styled from 'styled-components';
 import MdBurger from 'react-icons/lib/md/menu';
+import { push } from 'react-router-redux';
 
 const entries = [
-  { id: 1, name: 'Home' },
-  { id: 2, name: 'Me' },
+  { id: 1, name: 'Home', path: '/' },
+  { id: 2, name: 'Me', path: '/me' },
 ];
 
 const Wrapper = styled.section`
@@ -35,7 +36,7 @@ const Entry = styled.div`
   border-top: 1px solid #aaa;
 `;
 
-const Menu = ({ collapsed, toggleCollapsed }) => (
+const Menu = ({ collapsed, toggleCollapsed, linkTo }) => (
   <Wrapper>
     <ButtonWrapper>
       <Button onClick={toggleCollapsed}>
@@ -45,7 +46,7 @@ const Menu = ({ collapsed, toggleCollapsed }) => (
 
     <Entries collapsed={collapsed}>
       {entries.map((entry) =>
-        <Entry key={entry.id}>
+        <Entry key={entry.id} onClick={() => linkTo(entry.path)}>
           {entry.name}
         </Entry>
       )}
@@ -63,6 +64,10 @@ const Connected = connectLean({
   toggleCollapsed(e) {
     e.preventDefault();
     this.setState({ collapsed: !this.state.collapsed });
+  },
+
+  linkTo(path) {
+    this.dispatch(push(path));
   },
 })(Menu);
 
