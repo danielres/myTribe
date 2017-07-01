@@ -7,6 +7,7 @@ import MdBurger from 'react-icons/lib/md/menu';
 import MdHome from 'react-icons/lib/md/home';
 import MdFavorite from 'react-icons/lib/md/favorite';
 import MdAccountCircle from 'react-icons/lib/md/account-circle';
+import FaSignOut from 'react-icons/lib/fa/sign-out';
 
 const entries = [
   { id: 'home', name: 'Home', path: '/' },
@@ -18,6 +19,7 @@ const iconFor = (id) => ({
   home: <MdHome />,
   members: <MdFavorite />,
   me: <MdAccountCircle />,
+  logout: <FaSignOut />,
 }[id])
 
 const Wrapper = styled.section`
@@ -53,7 +55,7 @@ const Icon = styled.div`
   margin-right: 20px;
 `;
 
-const Menu = ({ collapsed, toggleCollapsed, handleClick }) => (
+const Menu = ({ collapsed, toggleCollapsed, handleClick, logout }) => (
   <Wrapper>
     <ButtonWrapper>
       <Button onClick={toggleCollapsed}>
@@ -71,6 +73,11 @@ const Menu = ({ collapsed, toggleCollapsed, handleClick }) => (
           {entry.name}
         </Entry>
       )}
+      <Entry onClick={logout}>
+        <Icon>{iconFor('logout')}</Icon>
+        Logout
+      </Entry>
+
     </Entries>
   </Wrapper>
 );
@@ -90,6 +97,11 @@ const Connected = connectLean({
   handleClick(path) {
     this.dispatch(push(path));
     this.setState({ collapsed: true });
+  },
+
+  logout() {
+    this.setState({ collapsed: true });
+    alert('(Logout)');
   },
 })(Menu);
 
