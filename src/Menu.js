@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connectLean } from 'lean-redux';
 import styled from 'styled-components';
 import MdBurger from 'react-icons/lib/md/menu';
