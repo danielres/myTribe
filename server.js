@@ -1,20 +1,25 @@
-import express from 'express';
-import proxy from 'express-http-proxy';
+import express from 'express'
+import proxy from 'express-http-proxy'
 
 const app = express()
 
 const PORT = 3000
 
-const mode = process.env.ASSETS_MODE
+const { ASSETS_MODE } = process.env
 
-if(mode === 'dynamic') {
-  app.use('/', proxy('localhost:3001'));
-  app.use('/me', proxy('localhost:3001'));
-  app.use('/members', proxy('localhost:3001'));
-  app.use('/members/*', proxy('localhost:3001'));
-  app.use('/about', proxy('localhost:3001'));
+const routes = [
+  '/',
+  '/me',
+  '/members*',
+  '/about',
+]
+
+if(ASSETS_MODE === 'dynamic') {
+  app.use('/', proxy('localhost:3001'))
 } else {
-  app.use(express.static('build'))
+  routes.forEach((route) =>
+    app.use(route, express.static('build'))
+  )
 }
 
 console.log("running server on port " + PORT)
