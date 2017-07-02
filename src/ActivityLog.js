@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import PageTitle from './shared/PageTitle';
+import Entry from './shared/Entry';
 
 const entries = [
   { id: 1, name: "Entry 1"},
@@ -9,11 +10,6 @@ const entries = [
 ];
 
 const Wrapper = styled.section`
-`;
-
-const Entry = styled.div`
-  padding: 20px;
-  border-top: 1px solid #aaa;
 `;
 
 class ActivityLog extends Component {
