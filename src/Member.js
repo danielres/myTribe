@@ -3,19 +3,17 @@ import { connectLean } from 'lean-redux';
 import { push } from 'react-router-redux';
 import styled from 'styled-components';
 
-import store from './store';
-
 import PageTitle from './shared/PageTitle';
 import Profile from './shared/Profile';
 
 const Wrapper = styled.section`
 `;
 
-const Member = ({ title }) => (
+const Member = ({ handleBackClick, title }) => (
   <Wrapper>
     <PageTitle>
       <span
-        onClick={() => store.dispatch(push('/members'))}
+        onClick={handleBackClick}
         style={{ textDecoration: 'underline' }}
       >
         Members
@@ -28,16 +26,15 @@ const Member = ({ title }) => (
   </Wrapper>
 );
 
-const toLink = (str) => (
-  <a href={ str }>{ str }</a>
-);
-
 const Connected = connectLean({
   mapState: (state, ownProps) => ({
     title: ownProps.location.pathname.split('/')[2],
   }),
+
+  handleBackClick(path) {
+    this.dispatch(push('/members'));
+  },
 })(Member);
 
 
 export default Connected;
-
