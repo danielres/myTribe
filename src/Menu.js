@@ -8,17 +8,20 @@ import MdHome from 'react-icons/lib/md/home';
 import MdFavorite from 'react-icons/lib/md/favorite';
 import MdAccountCircle from 'react-icons/lib/md/account-circle';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
+import MdInfo from 'react-icons/lib/md/info';
 
 const entries = [
   { id: 'home', name: 'Home', path: '/' },
   { id: 'members', name: 'Members', path: '/members' },
   { id: 'me', name: 'Me', path: '/me' },
+  { id: 'about', name: 'About', path: '/about' },
 ];
 
 const iconFor = (id) => ({
   home: <MdHome />,
   members: <MdFavorite />,
   me: <MdAccountCircle />,
+  about: <MdInfo />,
   logout: <FaSignOut />,
 }[id])
 

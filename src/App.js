@@ -13,6 +13,7 @@ import Menu from './Menu';
 import ActivityLog from './ActivityLog';
 import Members from './Members';
 import Me from './Me';
+import About from './About';
 
 const Wrapper = styled.section`
   background: #fff;
@@ -37,6 +38,7 @@ class App extends Component {
             <Route exact path="/" component={ActivityLog}/>
             <Route exact path="/members" component={Members}/>
             <Route exact path="/me" component={Me}/>
+            <Route exact path="/about" component={About}/>
           </Wrapper>
         </ConnectedRouter>
       </Provider>
