@@ -12,6 +12,7 @@ import { history } from './store';
 import Menu from './Menu';
 import ActivityLog from './ActivityLog';
 import Members from './Members';
+import Member from './Member';
 import Me from './Me';
 import About from './About';
 
@@ -36,7 +37,8 @@ class App extends Component {
           <Wrapper>
             <Menu />
             <Route exact path="/" component={ActivityLog}/>
-            <Route exact path="/members" component={Members}/>
+            <Route exact path="/members" component={Members} />
+            <Route exact path="/members/:id" component={Member} />
             <Route exact path="/me" component={Me}/>
             <Route exact path="/about" component={About}/>
           </Wrapper>
