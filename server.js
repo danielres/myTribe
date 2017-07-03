@@ -8,6 +8,16 @@ const PORT = 3001
 
 const { ASSETS_MODE } = process.env
 
+app.get('/api/members', (req, res, next) => {
+  res.json([
+    { id: 1, slug: 'Albert',   name: 'Albert'   },
+    { id: 2, slug: 'Eve',      name: 'Eve'      },
+    { id: 3, slug: 'Ezequiel', name: 'Ezequiel' },
+    { id: 4, slug: 'Gustavo',  name: 'Gustavo'  },
+    { id: 5, slug: 'Daniel',   name: 'Daniel'   },
+  ]);
+});
+
 if(ASSETS_MODE === 'static') {
   // Serve static assets
   app.use(express.static(path.resolve(__dirname, '.', 'build')));

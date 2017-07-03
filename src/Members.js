@@ -8,32 +8,36 @@ import PageTitle from './shared/PageTitle';
 import Entry from './shared/Entry';
 import Profile from './shared/Profile';
 
-const entries = [
-  { id: 1, slug: 'Albert',   name: 'Albert'   },
-  { id: 2, slug: 'Eve',      name: 'Eve'      },
-  { id: 3, slug: 'Ezequiel', name: 'Ezequiel' },
-  { id: 4, slug: 'Gustavo',  name: 'Gustavo'  },
-  { id: 5, slug: 'Daniel',   name: 'Daniel'   },
-];
-
 const Wrapper = styled.section`
 `;
 
-const Members = (props) => (
-  <Wrapper>
-    <PageTitle>Members</PageTitle>
+class Members extends Component {
+  state = { entries: [] }
 
-    <div className="entries">
-      {entries.map((entry) =>
-        <Entry
-          key={entry.id}
-          onClick={() => store.dispatch(push(`/members/${entry.slug}`))}
-        >
-          {entry.name}
-        </Entry>
-      )}
-    </div>
-  </Wrapper>
-);
+  componentDidMount() {
+    fetch('/api/members')
+      .then(res => res.json())
+      .then(entries => this.setState({ entries }));
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <PageTitle>Members</PageTitle>
+
+        <div className='entries'>
+          {this.state.entries.map((entry) =>
+            <Entry
+              key={entry.id}
+              onClick={() => store.dispatch(push(`/members/${entry.slug}`))}
+            >
+              {entry.name}
+            </Entry>
+          )}
+        </div>
+      </Wrapper>
+    );
+  }
+}
 
 export default Members;
