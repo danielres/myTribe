@@ -1,25 +1,21 @@
 import express from 'express'
 import proxy from 'express-http-proxy'
+import path from 'path'
 
 const app = express()
 
-const PORT = 3000
+const PORT = 3001
 
 const { ASSETS_MODE } = process.env
 
-const routes = [
-  '/',
-  '/me',
-  '/members*',
-  '/about',
-]
+if(ASSETS_MODE === 'static') {
+  // Serve static assets
+  app.use(express.static(path.resolve(__dirname, '.', 'build')));
 
-if(ASSETS_MODE === 'dynamic') {
-  app.use('/', proxy('localhost:3001'))
-} else {
-  routes.forEach((route) =>
-    app.use(route, express.static('build'))
-  )
+  // Always return the main index.html, so react-router render the route in the client
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '.', 'build', 'index.html'));
+  });
 }
 
 console.log("running server on port " + PORT)

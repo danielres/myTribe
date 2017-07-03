@@ -26,11 +26,12 @@
   },
   "scripts": {
     "dev": "concurrently 'npm run backend:dev' 'BROWSER=none npm run frontend:dev'",
-    "backend:dev": "ASSETS_MODE=dynamic nodemon -r ./babelhook.js ./server.js",
-    "frontend:dev": "PORT=3001 react-scripts start",
-    "backend": "node -r ./babelhook.js ./server.js",
+    "backend:dev": "nodemon -r ./babelhook.js ./server.js",
+    "frontend:dev": "react-scripts start",
+    "backend:production": "ASSETS_MODE=static node -r ./babelhook.js ./server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+    "proxy": "http://localhost:3001"
 }
