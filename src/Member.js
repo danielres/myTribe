@@ -43,7 +43,7 @@ class Member extends Component {
 
 const Connected = connectLean({
   getInitialState() {
-    return { member: {} };
+    return { member: { addedByMember: {} } };
   },
 
   mapState: (state, ownProps) => ({

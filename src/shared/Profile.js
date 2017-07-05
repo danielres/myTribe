@@ -22,11 +22,9 @@ const Profile = ({ handleClickTo, person }) => (
   <div className="entries">
     <Entry>
       Invited by: {' '}
-      {person.addedByMember &&
-        <LinkTo target={`/members/${person.addedByMember.slug}`}>
-          {person.addedByMember.name}
-        </LinkTo>
-      }
+      <LinkTo target={`/members/${person.addedByMember.slug}`}>
+        {person.addedByMember.name}
+      </LinkTo>
     </Entry>
     <Entry>Member since: {person.memberSince}</Entry>
     <Entry>FB profile: {person.fbProfile}</Entry>
