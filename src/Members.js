@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connectLean } from 'lean-redux';
 import { push } from 'react-router-redux';
 import styled from 'styled-components';
 
@@ -12,26 +13,25 @@ const Wrapper = styled.section`
 `;
 
 class Members extends Component {
-  state = { entries: [] }
-
   componentDidMount() {
-    fetch('/api/members')
-      .then(res => res.json())
-      .then(entries => this.setState({ entries }));
+    const { fetchMembers } = this.props;
+    this.props.fetchMembers();
   }
 
   render() {
+    const { members } = this.props;
+
     return (
       <Wrapper>
         <PageTitle>Members</PageTitle>
 
         <div className='entries'>
-          {this.state.entries.map((entry) =>
+          {members.map((member) =>
             <Entry
-              key={entry.id}
-              onClick={() => store.dispatch(push(`/members/${entry.slug}`))}
+              key={member.id}
+              onClick={() => store.dispatch(push(`/members/${member.slug}`))}
             >
-              {entry.name}
+              {member.name}
             </Entry>
           )}
         </div>
@@ -40,4 +40,16 @@ class Members extends Component {
   }
 }
 
-export default Members;
+const Connected = connectLean({
+  getInitialState() {
+    return { members: [] };
+  },
+
+  fetchMembers() {
+    fetch('/api/members')
+      .then(res => res.json())
+      .then(members => this.setState({ members }))
+  },
+})(Members);
+
+export default Connected;
