@@ -8,15 +8,33 @@ const PORT = 3001
 
 const { ASSETS_MODE } = process.env
 
+const fakeFields = {
+  addedByMember: { id: 1, slug: 'Albert',   name: 'Albert'},
+  address: '123 Happy street, 10000 Berlin',
+  email: 'test@test.com',
+  fbProfile: 'http:...',
+  intro: `Hello everyone, ...`,
+  memberSince: '2017-01-05',
+  phone: '+49 151515 151515',
+}
+
+const members = [
+  { id: 1, slug: 'Albert',   name: 'Albert'  , ...fakeFields },
+  { id: 2, slug: 'Eve',      name: 'Eve'     , ...fakeFields },
+  { id: 3, slug: 'Ezequiel', name: 'Ezequiel', ...fakeFields },
+  { id: 4, slug: 'Gustavo',  name: 'Gustavo' , ...fakeFields },
+  { id: 5, slug: 'Daniel',   name: 'Daniel'  , ...fakeFields },
+]
+
 app.get('/api/members', (req, res, next) => {
-  res.json([
-    { id: 1, slug: 'Albert',   name: 'Albert'   },
-    { id: 2, slug: 'Eve',      name: 'Eve'      },
-    { id: 3, slug: 'Ezequiel', name: 'Ezequiel' },
-    { id: 4, slug: 'Gustavo',  name: 'Gustavo'  },
-    { id: 5, slug: 'Daniel',   name: 'Daniel'   },
-  ]);
-});
+  res.json(members)
+})
+
+app.get('/api/members/:slug', (req, res, next) => {
+  res.json(members.find((m) =>
+    m.slug === req.params.slug
+  ))
+})
 
 if(ASSETS_MODE === 'static') {
   // Serve static assets

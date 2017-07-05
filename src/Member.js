@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connectLean } from 'lean-redux';
 import { push } from 'react-router-redux';
 import styled from 'styled-components';
@@ -9,32 +9,57 @@ import Profile from './shared/Profile';
 const Wrapper = styled.section`
 `;
 
-const Member = ({ handleBackClick, title }) => (
-  <Wrapper>
-    <PageTitle>
-      <span
-        onClick={handleBackClick}
-        style={{ textDecoration: 'underline' }}
-      >
-        Members
-      </span>
-      {' '}/{' '}
-      { title }
-    </PageTitle>
+class Member extends Component {
+  componentDidMount() {
+    const { fetchMember, slug } = this.props;
+    fetchMember(slug);
+  }
 
-    <Profile person={{ name: '/' }} />
-  </Wrapper>
-);
+  componentWillReceiveProps() {
+    const { fetchMember, slug } = this.props;
+    fetchMember(slug);
+  }
+
+  render() {
+    const { handleBackClick, member } = this.props;
+    return (
+      <Wrapper>
+        <PageTitle>
+          <span
+            onClick={handleBackClick}
+            style={{ textDecoration: 'underline' }}
+          >
+            Members
+          </span>
+          {' '}/{' '}
+          {member.name}
+        </PageTitle>
+
+        <Profile person={member} />
+      </Wrapper>
+    );
+  }
+}
 
 const Connected = connectLean({
+  getInitialState() {
+    return { member: {} };
+  },
+
   mapState: (state, ownProps) => ({
-    title: ownProps.location.pathname.split('/')[2],
+    member: state.member,
+    slug: ownProps.location.pathname.split('/')[2],
   }),
+
+  fetchMember(slug) {
+    fetch(`/api/members/${slug}`)
+      .then(res => res.json())
+      .then(member => this.setState({ member }));
+  },
 
   handleBackClick(path) {
     this.dispatch(push('/members'));
   },
 })(Member);
-
 
 export default Connected;

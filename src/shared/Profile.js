@@ -1,27 +1,43 @@
 import React, { Component } from 'react';
+import { connectLean } from 'lean-redux';
+import { push } from 'react-router-redux';
 import styled from 'styled-components';
 
 import PageTitle from './PageTitle';
 import Entry from './Entry';
 
-const entries = [
-  { id: 2, name: "Email"},
-  { id: 3, name: "Phone"},
-  { id: 4, name: "Member since"},
-  { id: 5, name: "Inviter"},
-  { id: 6, name: "FB profile (link)"},
-  { id: 7, name: "Intro"},
-  { id: 8, name: "Inviter intro"},
-];
+const LinkTo = connectLean({
+  handleClickTo(path) {
+    this.dispatch(push(path));
+  },
+})(
+  ({ children, handleClickTo, target }) => (
+    <span
+      onClick={() => handleClickTo(target)}
+    >
+      {children}
+    </span>
+  )
+);
 
-const Profile = ({ person }) => (
+const Profile = ({ handleClickTo, person }) => (
   <div className="entries">
-    {entries.map((entry) =>
-      <Entry key={entry.id}>
-        {entry.name}
-      </Entry>
-    )}
+    <Entry>
+      Invited by: {' '}
+      {person.addedByMember &&
+        <LinkTo target={`/members/${person.addedByMember.slug}`}>
+          {person.addedByMember.name}
+        </LinkTo>
+      }
+    </Entry>
+    <Entry>Member since: {person.memberSince}</Entry>
+    <Entry>FB profile: {person.fbProfile}</Entry>
+    <Entry>Intro: {person.intro}</Entry>
+    <Entry>Email: {person.email}</Entry>
+    <Entry>Phone: {person.phone}</Entry>
+    <Entry>Address: {person.address}</Entry>
   </div>
 );
 
 export default Profile;
+
