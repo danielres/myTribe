@@ -39,7 +39,6 @@ class App extends Component {
             <Route exact path="/" component={ActivityLog}/>
             <Route exact path="/members" component={Members} />
             <Route exact path="/members/:id" component={Member} />
-            <Route exact path="/me" component={Me}/>
             <Route exact path="/about" component={About}/>
           </Wrapper>
         </ConnectedRouter>

@@ -10,13 +10,6 @@ import MdAccountCircle from 'react-icons/lib/md/account-circle';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
 import MdInfo from 'react-icons/lib/md/info';
 
-const entries = [
-  { id: 'home', name: 'Home', path: '/' },
-  { id: 'members', name: 'Members', path: '/members' },
-  { id: 'me', name: 'Me', path: '/me' },
-  { id: 'about', name: 'About', path: '/about' },
-];
-
 const iconFor = (id) => ({
   home: <MdHome />,
   members: <MdFavorite />,
@@ -58,7 +51,13 @@ const Icon = styled.div`
   margin-right: 20px;
 `;
 
-const Menu = ({ collapsed, toggleCollapsed, handleClick, logout }) => (
+const Menu = ({
+  collapsed,
+  entries,
+  handleClick,
+  logout,
+  toggleCollapsed,
+}) => (
   <Wrapper>
     <ButtonWrapper>
       <Button onClick={toggleCollapsed}>
@@ -86,24 +85,35 @@ const Menu = ({ collapsed, toggleCollapsed, handleClick, logout }) => (
 );
 
 const Connected = connectLean({
-  scope: 'Menu',
-
   getInitialState() {
-    return { collapsed: true };
+    return {
+      Menu: { collapsed: true },
+      currentUser: { name: 'Daniel', slug: 'Daniel' },
+    };
   },
+
+  mapState: (state, ownProps) => ({
+    collapsed: state.Menu.collapsed,
+    entries: [
+      { id: 'home', name: 'Home', path: '/' },
+      { id: 'members', name: 'Members', path: '/members' },
+      { id: 'me', name: 'Me', path: `/members/${state.currentUser.slug}` },
+      { id: 'about', name: 'About', path: '/about' },
+    ],
+  }),
 
   toggleCollapsed(e) {
     e.preventDefault();
-    this.setState({ collapsed: !this.state.collapsed });
+    this.setState({ Menu: { collapsed: !this.state.Menu.collapsed }});
   },
 
   handleClick(path) {
     this.dispatch(push(path));
-    this.setState({ collapsed: true });
+    this.setState({ Menu: { collapsed: true }});
   },
 
   logout() {
-    this.setState({ collapsed: true });
+    this.setState({ Menu: { collapsed: true }});
     alert('(Logout)');
   },
 })(Menu);
