@@ -3,6 +3,8 @@ import { connectLean } from 'lean-redux';
 import { push } from 'react-router-redux';
 import styled from 'styled-components';
 
+const isTouchEnabled =  !!('ontouchstart' in window) || window.navigator.msMaxTouchPoints > 0;
+
 const _LinkTo = connectLean({
   handleClickTo(path) {
     this.props.external
@@ -23,7 +25,7 @@ const _LinkTo = connectLean({
 const LinkTo = styled(_LinkTo)`
   cursor: pointer;
   &:hover {
-    background: #eee;
+    ${!isTouchEnabled && 'background: #eee;'}
   }
 `;
 
