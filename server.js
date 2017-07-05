@@ -12,8 +12,9 @@ const fakeFields = {
   addedByMember: { id: 1, slug: 'Albert',   name: 'Albert'},
   address: '123 Happy street, 10000 Berlin',
   email: 'test@test.com',
-  fbProfile: 'http:...',
+  fbProfileUrl: 'http://google.com',
   intro: `Hello everyone, ...`,
+  introUrl: `http://google.com`,
   memberSince: '2017-01-05',
   phone: '+49 151515 151515',
 }
