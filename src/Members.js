@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connectLean } from 'lean-redux';
-import { push } from 'react-router-redux';
 import styled from 'styled-components';
-
-import store from './store';
 
 import PageTitle from './shared/PageTitle';
 import Entry from './shared/Entry';
+import LinkTo from './shared/LinkTo';
 
 const Wrapper = styled.section`
 `;
@@ -26,12 +24,14 @@ class Members extends Component {
 
         <div className='entries'>
           {members.map((member) =>
-            <Entry
+            <LinkTo
               key={member.id}
-              onClick={() => store.dispatch(push(`/members/${member.slug}`))}
+              target={`/members/${member.slug}`}
             >
-              {member.name}
-            </Entry>
+              <Entry>
+                {member.name}
+              </Entry>
+            </LinkTo>
           )}
         </div>
       </Wrapper>
