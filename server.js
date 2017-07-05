@@ -9,7 +9,7 @@ const PORT = 3001
 const { ASSETS_MODE } = process.env
 
 const fakeFields = {
-  addedByMember: { id: 1, slug: 'Albert',   name: 'Albert'},
+  addedByMember: { id: 1, slug: 'Albert', url: '/members/Albert', name: 'Albert'},
   address: '123 Happy street, 10000 Berlin',
   email: 'test@test.com',
   fbProfileUrl: 'http://google.com',
@@ -20,11 +20,11 @@ const fakeFields = {
 }
 
 const members = [
-  { id: 1, slug: 'Albert',   name: 'Albert'  , ...fakeFields },
-  { id: 2, slug: 'Eve',      name: 'Eve'     , ...fakeFields },
-  { id: 3, slug: 'Ezequiel', name: 'Ezequiel', ...fakeFields },
-  { id: 4, slug: 'Gustavo',  name: 'Gustavo' , ...fakeFields },
-  { id: 5, slug: 'Daniel',   name: 'Daniel'  , ...fakeFields },
+  { id: 1, slug: 'Albert',   url: '/members/Albert',   name: 'Albert'  , ...fakeFields },
+  { id: 2, slug: 'Eve',      url: '/members/Eve',      name: 'Eve'     , ...fakeFields },
+  { id: 3, slug: 'Ezequiel', url: '/members/Ezequiel', name: 'Ezequiel', ...fakeFields },
+  { id: 4, slug: 'Gustavo',  url: '/members/Gustavo',  name: 'Gustavo' , ...fakeFields },
+  { id: 5, slug: 'Daniel',   url: '/members/Daniel',   name: 'Daniel'  , ...fakeFields },
 ]
 
 app.get('/api/members', (req, res, next) => {

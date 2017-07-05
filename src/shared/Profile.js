@@ -5,8 +5,8 @@ import LinkTo from './LinkTo';
 
 const Profile = ({ handleClickTo, person }) => (
   <div className="entries">
-    <LinkTo target={`/members/${person.addedByMember.slug}`}>
-      <Entry>Invited by: {person.addedByMember.name}</Entry>
+    <LinkTo target={person.addedByMember.url}>
+      <Entry>Added by: {person.addedByMember.name}</Entry>
     </LinkTo>
 
     <Entry>Member since: {person.memberSince}</Entry>

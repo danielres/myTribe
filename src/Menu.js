@@ -88,7 +88,7 @@ const Connected = connectLean({
   getInitialState() {
     return {
       Menu: { collapsed: true },
-      currentUser: { name: 'Daniel', slug: 'Daniel' },
+      currentUser: { name: 'Daniel', slug: 'Daniel', path: '/members/Daniel' },
     };
   },
 
@@ -97,7 +97,7 @@ const Connected = connectLean({
     entries: [
       { id: 'home', name: 'Home', path: '/' },
       { id: 'members', name: 'Members', path: '/members' },
-      { id: 'me', name: 'Me', path: `/members/${state.currentUser.slug}` },
+      { id: 'me', name: 'Me', path: state.currentUser.path },
       { id: 'about', name: 'About', path: '/about' },
     ],
   }),

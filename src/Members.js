@@ -26,7 +26,7 @@ class Members extends Component {
           {members.map((member) =>
             <LinkTo
               key={member.id}
-              target={`/members/${member.slug}`}
+              target={member.url}
             >
               <Entry>
                 {member.name}
