@@ -27,7 +27,7 @@ class Member extends Component {
         <PageTitle>
           <span
             onClick={handleBackClick}
-            style={{ textDecoration: 'underline' }}
+            style={{ textDecoration: 'underline', cursor: 'pointer' }}
           >
             Members
           </span>
