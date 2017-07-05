@@ -7,7 +7,6 @@ import store from './store';
 
 import PageTitle from './shared/PageTitle';
 import Entry from './shared/Entry';
-import Profile from './shared/Profile';
 
 const Wrapper = styled.section`
 `;
@@ -15,7 +14,7 @@ const Wrapper = styled.section`
 class Members extends Component {
   componentDidMount() {
     const { fetchMembers } = this.props;
-    this.props.fetchMembers();
+    fetchMembers();
   }
 
   render() {

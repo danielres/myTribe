@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connectLean } from 'lean-redux';
 import { push } from 'react-router-redux';
-import styled from 'styled-components';
 
-import PageTitle from './PageTitle';
 import Entry from './Entry';
 
 const LinkTo = connectLean({
