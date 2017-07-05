@@ -13,7 +13,6 @@ import Menu from './Menu';
 import ActivityLog from './ActivityLog';
 import Members from './Members';
 import Member from './Member';
-import Me from './Me';
 import About from './About';
 
 const Wrapper = styled.section`
