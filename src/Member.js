@@ -15,9 +15,9 @@ class Member extends Component {
     fetchMember(slug);
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-    if(this.props !== nextProps) {
-      const { fetchMember, slug } = this.props;
+  componentDidUpdate(prevProps, prevState) {
+    const { fetchMember, slug } = this.props;
+    if(this.props.slug !== prevProps.slug) {
       fetchMember(slug);
     }
   }
