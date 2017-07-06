@@ -15,9 +15,11 @@ class Member extends Component {
     fetchMember(slug);
   }
 
-  componentWillReceiveProps() {
-    const { fetchMember, slug } = this.props;
-    fetchMember(slug);
+  componentWillReceiveProps(nextProps, nextState) {
+    if(this.props !== nextProps) {
+      const { fetchMember, slug } = this.props;
+      fetchMember(slug);
+    }
   }
 
   render() {
