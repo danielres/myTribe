@@ -10,4 +10,4 @@ RUN npm i -g yarn && yarn install && yarn run build
 
 EXPOSE 3001
 
-CMD node -r ./babelhook.js ./server.js
+CMD npm run backend:production
