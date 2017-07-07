@@ -1,5 +1,18 @@
 version: '3'
 services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - web
+    restart: always
+    environment:
+      DOMAINS: 'mytribe.pixarea.com -> http://web'
+      # STAGE: 'production'
+      # FORCE_RENEW: 'true'
+
   web:
     build:
       context: .
