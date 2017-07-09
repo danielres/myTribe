@@ -12,6 +12,7 @@
     "express-http-proxy": "^1.0.3",
     "history": "^4.6.3",
     "lean-redux": "^3.3.1",
+    "pg": "^6.4.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-icons": "^2.2.5",
