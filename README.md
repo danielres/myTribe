@@ -30,6 +30,8 @@ Deployment:
 
 For this project, the Docker host is a minimal Digital Ocean droplet for 5$/month (512 mb RAM, 20Gb Disk) running a Digital Ocean's standard Ubuntu 14.04.
 
+`docker-machine create --driver digitalocean --digitalocean-access-token=YOUR_DIGITALOCEAN_ACCESS_TOKEN --digitalocean-size 512mb YOUR_DOCKER_MACHINE_NAME`
+
 This is the cheapest option available and comes with limitations that require some little tweaks. The main problem is that the droplet doesn't have enough RAM to be able to complete the `npm install` (or `yarn install`) command. 
 
 Luckily, we have enough hard more than enough disk space for us to set up a 1Gb swapfile, which solves our probem.
@@ -39,5 +41,9 @@ Luckily, we have enough hard more than enough disk space for us to set up a 1Gb 
 Access the host's terminal through ssh, then run the following command on the host:
 
 `fallocate -l 1G /swapfile && chmod 600 /swapfile && mkswap /swapfile && sudo swapon /swapfile && swapon --show`
+
+With docker-machine:
+
+`docker-machine ssh YOUR_DOCKER_MACHINE_NAME "fallocate -l 1G /swapfile && chmod 600 /swapfile && mkswap /swapfile && sudo swapon /swapfile && swapon --show"`
 
 This will create the swapfile needed for the node modules installation to complete.
