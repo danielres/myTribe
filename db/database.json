@@ -1,0 +1,26 @@
+{
+  "defaultEnv": {"ENV": "NODE_ENV"},
+
+  "dev": {
+    "driver": "pg",
+    "host": "db",
+    "user": {"ENV": "PGUSER"},
+    "password": {"ENV": "PGPASSWORD"},
+    "database": {"ENV": "PGDB"},
+    "schema": {"ENV": "PGSCHEMA"}
+  },
+
+  "prod": {
+    "driver": "pg",
+    "host": "db",
+    "user": {"ENV": "PGUSER"},
+    "password": {"ENV": "PGPASSWORD"},
+    "database": {"ENV": "PGDB"},
+    "schema": {"ENV": "PGSCHEMA"}
+  },
+
+  "test": {
+    "driver": "sqlite3",
+    "filename": ":memory:"
+  }
+}
