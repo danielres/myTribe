@@ -47,3 +47,9 @@ With docker-machine:
 `docker-machine ssh YOUR_DOCKER_MACHINE_NAME "fallocate -l 1G /swapfile && chmod 600 /swapfile && mkswap /swapfile && sudo swapon /swapfile && swapon --show"`
 
 This will create the swapfile needed for the node modules installation to complete.
+
+## Running commands through Docker
+
+### Running migrations
+
+`docker-compose -f docker-compose.dev.yml run web npm run migrate up`
