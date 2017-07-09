@@ -1,6 +1,9 @@
+import dotenv from 'dotenv'
 import express from 'express'
 import proxy from 'express-http-proxy'
 import path from 'path'
+
+dotenv.config()
 
 const app = express()
 
