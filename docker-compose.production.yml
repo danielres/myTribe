@@ -9,8 +9,8 @@ services:
       - web
     restart: always
     environment:
-      DOMAINS: 'mytribe.pixarea.com -> http://web'
-      # STAGE: 'production'
+      DOMAINS: "${HTTPSDOMAINS}"
+      STAGE: 'production'
       # FORCE_RENEW: 'true'
 
   web:
