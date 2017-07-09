@@ -17,7 +17,5 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.production
-    ports:
-      - "80:3001"
-
-
+    links:
+      - "db"
