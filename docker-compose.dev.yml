@@ -11,6 +11,9 @@ services:
       - "3001:3001"
     links:
       - "db"
+    depends_on:
+      - db
+
   db:
     image: postgres
     environment:
