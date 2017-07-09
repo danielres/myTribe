@@ -9,3 +9,11 @@ services:
     ports:
       - "3000:3000"
       - "3001:3001"
+    links:
+      - "db"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "${PGPASSWORD}"
+      POSTGRES_USER: "${PGUSER}"
+      POSTGRES_DB: "${PGDB}"
