@@ -19,3 +19,10 @@ services:
       dockerfile: ./Dockerfile.production
     links:
       - "db"
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "${PGPASSWORD}"
+      POSTGRES_USER: "${PGUSER}"
+      POSTGRES_DB: "${PGDB}"
