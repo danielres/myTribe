@@ -64,4 +64,7 @@ export const findMemberBySlug = (slug) =>
 		.select()
 		.from('members')
 		.where({ slug })
-		.then((resp) => resp[0])
+		.then((resp) => ({
+			...resp[0],
+			...fakeFields,
+		}))

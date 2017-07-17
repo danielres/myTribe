@@ -5,9 +5,9 @@ import LinkTo from './LinkTo'
 
 const Profile = ({ handleClickTo, person }) =>
 	<div className="entries">
-		<LinkTo target={person.addedByMember && person.addedByMember.url}>
+		<LinkTo target={person.addedByMember.url}>
 			<Entry>
-				Added by: {person.addedByMember && person.addedByMember.name}
+				Added by: {person.addedByMember.name}
 			</Entry>
 		</LinkTo>
 
