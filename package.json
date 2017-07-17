@@ -7,8 +7,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "concurrently": "^3.5.0",
-    "db-migrate": "^0.10.0-beta.20",
-    "db-migrate-pg": "^0.2.4",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "express-http-proxy": "^1.0.3",
@@ -36,7 +34,7 @@
     "frontend:dev": "react-scripts start",
     "backend:production": "ASSETS_MODE=static node -r ./babelhook.js ./server.js",
     "build": "react-scripts build",
-    "migrate": "db-migrate --config db/database.json -m db/migrations",
+    "migrate": "knex migrate:latest",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

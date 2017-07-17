@@ -1,0 +1,24 @@
+require('dotenv').config()
+
+module.exports = {
+	dev: {
+		client: 'pg',
+		connection: {
+			host: 'db',
+			database: process.env.PGDB,
+			user: process.env.PGUSER,
+			password: process.env.PGPASSWORD,
+		},
+		pool: {
+			min: 2,
+			max: 10,
+		},
+		migrations: {
+			tableName: 'knex_migrations',
+		},
+	},
+
+	staging: {},
+
+	production: {},
+}
