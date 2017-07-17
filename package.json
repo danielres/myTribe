@@ -13,6 +13,7 @@
     "express": "^4.15.3",
     "express-http-proxy": "^1.0.3",
     "history": "^4.6.3",
+    "knex": "^0.13.0",
     "lean-redux": "^3.3.1",
     "pg": "^6.4.0",
     "react": "^15.5.4",
