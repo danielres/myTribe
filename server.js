@@ -3,7 +3,7 @@ import express from 'express'
 
 import path from 'path'
 
-import { query } from './db/adapter'
+import { addRandomMember, findMemberBySlug, getMembers } from './db/queries'
 
 dotenv.config()
 
@@ -14,69 +14,70 @@ const PORT = 3001
 const { ASSETS_MODE } = process.env
 
 const fakeFields = {
-  addedByMember: {
-    id: 1,
-    slug: 'Albert',
-    url: '/members/Albert',
-    name: 'Albert',
-  },
-  address: '123 Happy street, 10000 Berlin',
-  email: 'test@test.com',
-  fbProfileUrl: 'http://google.com',
-  intro: `Hello everyone, ...`,
-  introUrl: `http://google.com`,
-  memberSince: '2017-01-05',
-  phone: '+49 151515 151515',
+	addedByMember: {
+		id: 1,
+		slug: 'Albert',
+		url: '/members/Albert',
+		name: 'Albert',
+	},
+	address: '123 Happy street, 10000 Berlin',
+	email: 'test@test.com',
+	fbProfileUrl: 'http://google.com',
+	intro: `Hello everyone, ...`,
+	introUrl: `http://google.com`,
+	memberSince: '2017-01-05',
+	phone: '+49 151515 151515',
 }
 
-const members = [
-  {
-    id: 1,
-    slug: 'Albert',
-    url: '/members/Albert',
-    name: 'Albert',
-    ...fakeFields,
-  },
-  { id: 2, slug: 'Eve', url: '/members/Eve', name: 'Eve', ...fakeFields },
-  {
-    id: 3,
-    slug: 'Ezequiel',
-    url: '/members/Ezequiel',
-    name: 'Ezequiel',
-    ...fakeFields,
-  },
-  {
-    id: 4,
-    slug: 'Gustavo',
-    url: '/members/Gustavo',
-    name: 'Gustavo',
-    ...fakeFields,
-  },
-  {
-    id: 5,
-    slug: 'Daniel',
-    url: '/members/Daniel',
-    name: 'Daniel',
-    ...fakeFields,
-  },
-]
-
 app.get('/api/members', (req, res, next) => {
-  res.json(members)
+	getMembers(
+		(err, resp) =>
+			err
+				? console.log(err)
+				: // : res.json(members)
+					res.json(
+						resp.rows.map((row) => ({
+							...row,
+							url: `/members/${row.slug}`,
+							...fakeFields,
+						}))
+					)
+	)
+})
+
+app.get('/api/members/add', (req, res, next) => {
+	addRandomMember((err, resp) => {
+		console.log(err, resp)
+
+		getMembers(
+			(err, resp) =>
+				err
+					? console.log(err)
+					: res.json(
+							resp.rows.map((row) => ({
+								...row,
+								url: `/members/${row.slug}`,
+								...fakeFields,
+							}))
+						)
+		)
+	})
 })
 
 app.get('/api/members/:slug', (req, res, next) => {
-  res.json(members.find(m => m.slug === req.params.slug))
+	findMemberBySlug(req.params.slug)((err, resp) => {
+		err ? console.log(err) : res.json(resp.rows[0])
+	})
 })
 
 if (ASSETS_MODE === 'static') {
-  // Serve static assets
-  app.use(express.static(path.resolve(__dirname, '.', 'build')))
+	// Serve static assets
+	app.use(express.static(path.resolve(__dirname, '.', 'build')))
 
-  // Always return the main index.html, so react-router render the route in the client
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '.', 'build', 'index.html'))
-  })
+	// Always return the main index.html, so react-router render the route in the client
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, '.', 'build', 'index.html'))
+	})
 }
 
 console.log('running server on port ' + PORT)

@@ -16,8 +16,16 @@ exports.setup = function(options, seedLink) {
 
 exports.up = function (db) {
   return db.createTable('members', {
-    id: { type: 'int', primaryKey: true },
-    name: 'string'
+    id: { type: 'int', primaryKey: true, autoIncrement: true },
+    slug: { type: 'string', notNull: true, unique: true },
+    name: { type: 'string', notNull: true, unique: true },
+    address: { type: 'string' },
+    email: { type: 'string' },
+    fb_profile_url: { type: 'string' },
+    intro: { type: 'text' },
+    intro_url: { type: 'string' },
+    member_since: { type: 'date' },
+    phone: { type: 'string' },
   });
 };
 
