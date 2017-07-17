@@ -30,6 +30,7 @@
     "react-scripts": "^1.0.7"
   },
   "scripts": {
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
     "dev": "concurrently 'npm run backend:dev' 'BROWSER=none npm run frontend:dev'",
     "backend:dev": "nodemon -r ./babelhook.js ./server.js",
     "frontend:dev": "react-scripts start",
