@@ -1,8 +1,9 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import proxy from 'express-http-proxy'
+
 import path from 'path'
-import { connect, query } from './db/adapter'
+
+import { query } from './db/adapter'
 
 dotenv.config()
 
