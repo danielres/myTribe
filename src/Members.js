@@ -29,7 +29,7 @@ class Members extends Component {
               target={member.url}
             >
               <Entry>
-                {member.name}
+                {member.displayName}
               </Entry>
             </LinkTo>
           )}
