@@ -22,3 +22,8 @@ services:
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_USER: "${PGUSER}"
       POSTGRES_DB: "${PGDB}"
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
