@@ -27,7 +27,7 @@ export const addRandomMember = (callback) => {
 				lastName: `${rand}`,
 				phone: `+49 ${rand}`,
 			},
-			invitedBy: '8bb961e3-8319-4681-9921-ec70633324a0',
+			invitedBy: null,
 			slug: `mem-${rand}`,
 		})
 		.into('members')
@@ -43,7 +43,7 @@ export const getMembers = () =>
 				...member,
 				url: `/members/${member.slug}`,
 			}))
-	)
+		)
 
 //prettier-ignore
 export const findMemberBySlug = (slug) =>
