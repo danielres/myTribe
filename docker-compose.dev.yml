@@ -9,6 +9,7 @@ services:
     ports:
       - "3000:3000"
       - "3001:3001"
+      - "5858:5858"
     links:
       - "db"
     depends_on:

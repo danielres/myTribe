@@ -1,0 +1,18 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"sourceMaps": true,
+			"name": "Attach",
+			"type": "node",
+			"request": "attach",
+			"port": 5858,
+			"address": "localhost",
+			"restart": true,
+			"outDir": null,
+			"localRoot": "${workspaceRoot}",
+			"remoteRoot": "/src",
+			"protocol": "inspector"
+		}
+	]
+}
