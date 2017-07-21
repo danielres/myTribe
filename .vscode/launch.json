@@ -12,7 +12,8 @@
 			"outFiles": [],
 			"localRoot": "${workspaceRoot}",
 			"remoteRoot": "/src",
-			"protocol": "inspector"
+			"protocol": "inspector",
+			"runtimeArgs": [ "--nolazy" ]
 		}
 	]
 }
