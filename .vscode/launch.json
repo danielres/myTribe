@@ -9,7 +9,7 @@
 			"port": 5858,
 			"address": "localhost",
 			"restart": true,
-			"outDir": null,
+			"outFiles": [],
 			"localRoot": "${workspaceRoot}",
 			"remoteRoot": "/src",
 			"protocol": "inspector"
