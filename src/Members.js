@@ -1,33 +1,29 @@
-import React, { Component } from 'react';
-import { connectLean } from 'lean-redux';
-import styled from 'styled-components';
+import { connectLean } from 'lean-redux'
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-import PageTitle from './shared/PageTitle';
-import Entry from './shared/Entry';
-import LinkTo from './shared/LinkTo';
+import Entry from './shared/Entry'
+import LinkTo from './shared/LinkTo'
+import PageTitle from './shared/PageTitle'
 
-const Wrapper = styled.section`
-`;
+const Wrapper = styled.section``
 
 class Members extends Component {
   componentDidMount() {
-    const { fetchMembers } = this.props;
-    fetchMembers();
+    const { fetchMembers } = this.props
+    fetchMembers()
   }
 
   render() {
-    const { members } = this.props;
+    const { members } = this.props
 
     return (
       <Wrapper>
         <PageTitle>Members</PageTitle>
 
-        <div className='entries'>
-          {members.map((member) =>
-            <LinkTo
-              key={member.id}
-              target={member.url}
-            >
+        <div className="entries">
+          {members.map(member =>
+            <LinkTo key={member.id} target={member.url}>
               <Entry>
                 {member.displayName}
               </Entry>
@@ -35,13 +31,13 @@ class Members extends Component {
           )}
         </div>
       </Wrapper>
-    );
+    )
   }
 }
 
 const Connected = connectLean({
   getInitialState() {
-    return { members: [] };
+    return { members: [] }
   },
 
   fetchMembers() {
@@ -49,6 +45,6 @@ const Connected = connectLean({
       .then(res => res.json())
       .then(members => this.setState({ members }))
   },
-})(Members);
+})(Members)
 
-export default Connected;
+export default Connected

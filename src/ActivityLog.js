@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-import PageTitle from './shared/PageTitle';
-import Entry from './shared/Entry';
+import Entry from './shared/Entry'
+import PageTitle from './shared/PageTitle'
 
 const entries = [
-  { id: 1, name: "Entry 1"},
-  { id: 2, name: "Entry 2"},
-];
+  { id: 1, name: 'Entry 1' },
+  { id: 2, name: 'Entry 2' },
+]
 
-const Wrapper = styled.section`
-`;
+const Wrapper = styled.section``
 
 class ActivityLog extends Component {
   render() {
@@ -19,7 +18,7 @@ class ActivityLog extends Component {
         <PageTitle>Activity</PageTitle>
 
         <div className="entries">
-          {entries.map((entry) =>
+          {entries.map(entry =>
             <Entry key={entry.id}>
               {entry.id}
               {' - '}
@@ -28,8 +27,8 @@ class ActivityLog extends Component {
           )}
         </div>
       </Wrapper>
-    );
+    )
   }
 }
 
-export default ActivityLog;
+export default ActivityLog
