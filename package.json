@@ -24,7 +24,11 @@
 		"styled-components": "^2.1.1"
 	},
 	"devDependencies": {
+		"eslint": "^4.3.0",
+		"eslint-config-prettier": "^2.3.0",
+		"eslint-plugin-prettier": "^2.1.2",
 		"nodemon": "^1.11.0",
+		"prettier": "^1.5.3",
 		"react-scripts": "^1.0.10"
 	},
 	"scripts": {
@@ -42,7 +46,8 @@
 		"migrate:make": "knex migrate:make",
 		"rollback": "knex migrate:rollback",
 		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"lint": "eslint ."
 	},
 	"proxy": "http://localhost:3001"
 }
