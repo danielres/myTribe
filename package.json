@@ -30,7 +30,7 @@
 	"scripts": {
 		"docker:dev": "docker-compose -f docker-compose.dev.yml up",
 		"docker:migrate": "docker-compose -f docker-compose.dev.yml run web npm run migrate",
-		"docker:migrate:make": "docker-compose -f docker-compose.dev.yml run web npm run migrate",
+		"docker:migrate:make": "docker-compose -f docker-compose.dev.yml run web npm run migrate:make",
 		"docker:run": "docker-compose -f docker-compose.dev.yml run web npm run",
 		"docker:rollback": "docker-compose -f docker-compose.dev.yml run web npm run rollback",
 		"dev": "concurrently 'npm run backend:dev' 'BROWSER=none npm run frontend:dev'",
