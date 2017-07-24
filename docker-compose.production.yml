@@ -32,3 +32,14 @@ services:
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_USER: "${PGUSER}"
       POSTGRES_DB: "${PGDB}"
+    depends_on:
+      - auth
+
+  auth:
+      image: lipp/login-with
+      environment:
+        LW_JWT_SECRET: "${LW_JWT_SECRET}"
+        LW_SESSION_SECRET: "${LW_SESSION_SECRET}"
+        LW_SUBDOMAIN: "${LW_SUBDOMAIN}"
+        LW_FACEBOOK_APPID: "${LW_FACEBOOK_APPID}"
+        LW_FACEBOOK_APPSECRET: "${LW_FACEBOOK_APPSECRET}"
