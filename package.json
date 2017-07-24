@@ -50,7 +50,7 @@
 		"_migrate": "knex migrate:latest",
 		"_migrate:make": "knex migrate:make",
 		"_rollback": "knex migrate:rollback",
-		"_production": "ASSETS_MODE=static node -r ./babelhook.js ./server.js",
+		"_production": "npm run _migrate && ASSETS_MODE=static node -r ./babelhook.js ./server.js",
 		"_eject": "react-scripts eject",
 		"_lint": "eslint .",
 		"_test": "react-scripts test --env=jsdom"
