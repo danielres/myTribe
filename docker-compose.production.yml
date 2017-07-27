@@ -25,6 +25,13 @@ services:
       - db
     environment:
       NODE_ENV: prod
+      PGPASSWORD: "${PGPASSWORD}"
+      PGUSER: "${PGUSER}"
+      PGDB: "${PGDB}"
+    ports:
+      - '3001:3001'
+    volumes:
+      - /src/node_modules
 
   db:
     image: postgres
