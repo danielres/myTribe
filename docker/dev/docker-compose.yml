@@ -3,9 +3,9 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./Dockerfile.dev
+      dockerfile: ./Dockerfile
     volumes:
-      - ".:/src"
+      - "../../:/src"
     ports:
       - "3000:3000"
       - "3001:3001"
@@ -16,6 +16,9 @@ services:
       - db
     environment:
       NODE_ENV: dev
+      PGPASSWORD: "${PGPASSWORD}"
+      PGUSER: "${PGUSER}"
+      PGDB: "${PGDB}"
 
   db:
     image: postgres

@@ -14,14 +14,14 @@ services:
 
   web:
     build:
-      context: .
-      dockerfile: ./Dockerfile.production
+      context: ../../
+      dockerfile: docker/production/Dockerfile
     links:
       - "db"
     depends_on:
       - db
     environment:
-      NODE_ENV: prod
+      NODE_ENV: production
       PGPASSWORD: "${PGPASSWORD}"
       PGUSER: "${PGUSER}"
       PGDB: "${PGDB}"

@@ -34,7 +34,7 @@
 	},
 	"config": {
 		"docker": {
-			"dev": "docker-compose -f docker-compose.dev.yml"
+			"dev": "docker-compose -f docker/dev/docker-compose.yml"
 		}
 	},
 	"scripts": {
