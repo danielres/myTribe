@@ -1,4 +1,4 @@
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 import express from 'express'
 
 import path from 'path'
@@ -9,7 +9,7 @@ import {
   getMembers,
 } from './db/queries'
 
-dotenv.config()
+// dotenv.config()
 
 const app = express()
 const PORT = 3001
