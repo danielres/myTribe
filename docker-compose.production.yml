@@ -11,9 +11,6 @@ services:
     environment:
       DOMAINS: "${HTTPSDOMAINS}"
       STAGE: 'production'
-      # FORCE_RENEW: 'true'
-    depends_on:
-      - web
 
   web:
     build:
