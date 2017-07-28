@@ -23,3 +23,7 @@ script:
 notifications:
   email:
     - $NOTIFICATIONS_EMAIL
+
+deploy:
+  provider: script
+  script: scripts/deploy.sh
