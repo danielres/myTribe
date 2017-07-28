@@ -14,9 +14,12 @@ before_install:
 
 script:
   - ls -lah
-  - ls node_modules/.bin
   - docker-compose -f docker/dev/docker-compose.yml up -d
   - docker-compose -f docker/dev/docker-compose.yml ps
+  - ls node_modules/.bin
+  - ls node_modules
+  - docker-compose -f docker/dev/docker-compose.yml exec web yarn
+  - ls node_modules/.bin
   - docker-compose -f docker/dev/docker-compose.yml exec web npm run _test
 
 notifications:
