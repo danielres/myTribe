@@ -24,8 +24,10 @@ script:
 
 notifications:
   email:
-    - $NOTIFICATIONS_EMAIL
-
+    - "$NOTIFICATIONS_EMAIL"
+  slack:
+    secure: "$NOTIFICATIONS_SLACK_SECURE"
+    
 deploy:
   provider: script
   script: scripts/deploy.sh
