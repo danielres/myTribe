@@ -9,13 +9,12 @@ services:
     ports:
       - "3000:3000"
       - "3001:3001"
-      - "5858:5858"
     links:
       - "db"
     depends_on:
       - db
     environment:
-      NODE_ENV: dev
+      NODE_ENV: test
       PGPASSWORD: "${PGPASSWORD}"
       PGUSER: "${PGUSER}"
       PGDB: "${PGDB}"
@@ -26,8 +25,3 @@ services:
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_USER: "${PGUSER}"
       POSTGRES_DB: "${PGDB}"
-
-  adminer:
-    image: adminer
-    ports:
-      - 8080:8080
