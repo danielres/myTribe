@@ -16,7 +16,7 @@ script:
   - ls -lah
   - docker-compose -f docker/dev/docker-compose.yml up -d
   - docker-compose -f docker/dev/docker-compose.yml ps
-  - docker-compose -f docker/dev/docker-compose.yml exec npm run test
+  - docker-compose -f docker/dev/docker-compose.yml exec web npm run _test
 
 notifications:
   email:
