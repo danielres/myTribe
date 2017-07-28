@@ -13,12 +13,12 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-  script:
+script:
   - ls -lah
   - docker-compose -f docker/dev/docker-compose.yml -d
   - docker-compose ps
   - docker-compose -f docker/dev/docker-compose.yml exec npm run test
 
-  notifications:
-    email:
-      - $NOTIFICATIONS_EMAIL
+notifications:
+  email:
+    - $NOTIFICATIONS_EMAIL
