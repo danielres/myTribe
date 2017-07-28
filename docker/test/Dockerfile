@@ -1,0 +1,11 @@
+FROM mhart/alpine-node:6
+
+WORKDIR /src
+
+# If you have native dependencies, you'll need extra tools
+# RUN apk add --no-cache make gcc g++ python
+
+EXPOSE 3000
+EXPOSE 3001
+
+CMD npm run _dev
