@@ -16,7 +16,7 @@ script:
   - ls -lah
   - docker-compose -f docker/dev/docker-compose.yml up -d
   - docker-compose -f docker/dev/docker-compose.yml ps
-  - docker-compose -f docker/dev/docker-compose.yml exec web yarn
+  - docker-compose -f docker/dev/docker-compose.yml exec web yarn --production=false
   - docker-compose -f docker/dev/docker-compose.yml exec web npm run _test
 
 notifications:
