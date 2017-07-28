@@ -19,6 +19,8 @@ script:
   - docker-compose -f docker/dev/docker-compose.yml exec web npm install -g yarn
   - docker-compose -f docker/dev/docker-compose.yml exec web yarn --production=false
   - docker-compose -f docker/dev/docker-compose.yml exec web npm run _test
+  - pwd
+  - ls -lah
 
 notifications:
   email:
