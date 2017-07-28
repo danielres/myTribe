@@ -25,6 +25,7 @@
 		"uuid": "^3.1.0"
 	},
 	"devDependencies": {
+		"babel-jest": "^20.0.3",
 		"eslint": "^4.3.0",
 		"eslint-config-prettier": "^2.3.0",
 		"eslint-plugin-prettier": "^2.1.2",
@@ -53,7 +54,7 @@
 		"_production": "npm run _migrate && ASSETS_MODE=static node -r ./babelhook.js ./server.js",
 		"_eject": "react-scripts eject",
 		"_lint": "eslint .",
-		"_test": "react-scripts test --env=jsdom"
+		"_test": "jest ."
 	},
 	"proxy": "http://localhost:3001"
 }
