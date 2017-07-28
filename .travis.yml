@@ -27,7 +27,9 @@ notifications:
     - "$NOTIFICATIONS_EMAIL"
   slack:
     secure: "$NOTIFICATIONS_SLACK_SECURE"
-    
+
 deploy:
   provider: script
   script: scripts/deploy.sh
+  on:
+    branch: master
