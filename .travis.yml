@@ -12,6 +12,17 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
+  - curl -L https://github.com/docker/machine/releases/download/v0.12.1/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && chmod +x /tmp/docker-machine && sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+  - mkdir $DOCKER_CERT_PATH
+  - echo $CA > $DOCKER_CERT_PATH/ca.pem
+  - echo $CLIENT_CERT > $DOCKER_CERT_PATH/cert.pem
+  - echo $CLIENT_KEY > $DOCKER_CERT_PATH/key.pem
+  - ls $DOCKER_CERT_PATH
+  - docker-compose build
+  - docker-compose down
+  - docker-compose up -d --force-recreate
+  - rm -rf $DOCKER_CERT_PATH
+
 script:
   - ls -lah
   - docker-compose -f docker/test/docker-compose.yml up -d
