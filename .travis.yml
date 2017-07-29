@@ -18,9 +18,9 @@ before_install:
   - echo $CLIENT_CERT > $DOCKER_CERT_PATH/cert.pem
   - echo $CLIENT_KEY > $DOCKER_CERT_PATH/key.pem
   - ls $DOCKER_CERT_PATH
-  - docker-compose build
-  - docker-compose down
-  - docker-compose up -d --force-recreate
+  - docker-compose -f docker/production/docker-compose.yml build
+  - docker-compose -f docker/production/docker-compose.yml down
+  - docker-compose -f docker/production/docker-compose.yml up -d --force-recreate
   - rm -rf $DOCKER_CERT_PATH
 
 script:
