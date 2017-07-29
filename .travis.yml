@@ -1,15 +1,18 @@
 language: node_js
 
+dist: precise
+
 addons:
   apt:
     packages:
       - libssl1.0.0
-      
+
 node_js:
   - "8"
     
 env:
   - DOCKER_COMPOSE_VERSION=1.14.0
+  - HTTPSDOMAINS=$HTTPSDOMAINS
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
