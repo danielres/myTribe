@@ -24,9 +24,9 @@ script:
 
 notifications:
   email:
-    - "$NOTIFICATIONS_EMAIL"
+    - $NOTIFICATIONS_EMAIL
   slack:
-    secure: "$NOTIFICATIONS_SLACK_SECURE"
+    secure: $NOTIFICATIONS_SLACK_SECURE
 
 deploy:
   skip_cleanup: true
