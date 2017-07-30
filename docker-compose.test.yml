@@ -8,6 +8,9 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.test
+      cache_from:
+        - mhart/alpine-node:6
+        - danielres/docker-react-node      
     volumes:
       - src:/src
     ports:
