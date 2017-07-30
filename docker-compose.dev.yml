@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - "../../:/src"
+      - ".:/src"
     ports:
       - "3000:3000"
       - "3001:3001"
@@ -19,7 +19,7 @@ services:
       PGPASSWORD: "${PGPASSWORD}"
       PGUSER: "${PGUSER}"
       PGDB: "${PGDB}"
-
+    command: npm run _dev
   db:
     image: postgres
     environment:
