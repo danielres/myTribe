@@ -1,0 +1,15 @@
+FROM mhart/alpine-node:6
+
+WORKDIR /src
+COPY . .
+
+# If you have native dependencies, you'll need extra tools
+# RUN apk add --no-cache make gcc g++ python
+RUN pwd
+RUN ls
+RUN npm i -g yarn && yarn install
+
+EXPOSE 3001
+EXPOSE 3000
+
+CMD npm run _test

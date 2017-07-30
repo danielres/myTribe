@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+  src:
+    
+services:
+  sut:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.test
+    volumes:
+      - src:/src
+    ports:
+      - 3000:3000
+      - 3001:3001
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: test
+      PGPASSWORD: mytribe
+      PGUSER: mytribe
+      PGDB: mytribe      
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: mytribe
+      POSTGRES_USER: mytribe
+      POSTGRES_DB: mytribe
