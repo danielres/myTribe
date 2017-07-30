@@ -7,7 +7,7 @@ services:
   sut:
     build:
       context: .
-      dockerfile: ./Dockerfile.test
+      dockerfile: ./Dockerfile
       cache_from:
         - mhart/alpine-node:6
         - danielres/docker-react-node      
@@ -24,7 +24,8 @@ services:
       NODE_ENV: test
       PGPASSWORD: mytribe
       PGUSER: mytribe
-      PGDB: mytribe      
+      PGDB: mytribe     
+    command: npm run _test
 
   db:
     image: postgres
