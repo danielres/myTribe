@@ -43,7 +43,7 @@
 		"migrate": "$npm_package_config_docker_dev run web npm run _migrate",
 		"migrate:make": "$npm_package_config_docker_dev run web npm run _migrate:make",
 		"rollback": "$npm_package_config_docker_dev run web npm run _rollback",
-		"test": "$npm_package_config_docker_dev run web npm run _test",
+		"autotest": "$npm_package_config_docker_dev run web npm run _test -- --watch",
 		"_build": "react-scripts build",
 		"_dev": "concurrently 'npm run _dev:backend' 'BROWSER=none npm run _dev:frontend'",
 		"_dev:backend": "nodemon --inspect=5858 -r ./babelhook.js ./server.js",
