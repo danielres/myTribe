@@ -1,5 +1,7 @@
 # Docker-Node-React test project
 
+Warning: this Readme is outdated. Stay tuned for updates !
+
 This project is a personal experiment for running a javascript app with decoupled frontend and backend using Docker.
 
 The whole application is composed of several independent layers assembled together using docker-compose:
