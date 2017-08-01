@@ -1,6 +1,6 @@
 import { tx } from './db'
 
-export const addRandomMember = callback => {
+export const addRandomMember = () => {
   const rand = Math.random()
 
   return tx(t =>
