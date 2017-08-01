@@ -1,8 +1,5 @@
 import { addRandomMember, getMembers } from './queries'
-import db from './db'
-
-const resetDb = done =>
-  db.migrate.rollback().then(() => db.migrate.latest()).then(done)
+import resetDb from '../test/support/resetDb'
 
 beforeEach(resetDb)
 afterAll(resetDb)
