@@ -1,7 +1,11 @@
 import { addRandomMember, getMembers } from './queries'
 import db from './db'
 
-beforeEach(() => db.delete().from('members'))
+const resetDb = done =>
+  db.migrate.rollback().then(() => db.migrate.latest()).then(done)
+
+beforeEach(resetDb)
+afterAll(resetDb)
 
 describe('addRandomMember + getMembers', () => {
   test('adds a random member + returns the list of members', done =>
