@@ -25,7 +25,7 @@ services:
       PGPASSWORD: mytribe
       PGUSER: mytribe
       PGDB: mytribe_test     
-    command: npm run _test
+    command: npm run _test:ci
 
   db:
     image: postgres
