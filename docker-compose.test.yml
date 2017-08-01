@@ -24,7 +24,7 @@ services:
       NODE_ENV: test
       PGPASSWORD: mytribe
       PGUSER: mytribe
-      PGDB: mytribe     
+      PGDB: mytribe_test     
     command: npm run _test
 
   db:
@@ -32,4 +32,4 @@ services:
     environment:
       POSTGRES_PASSWORD: mytribe
       POSTGRES_USER: mytribe
-      POSTGRES_DB: mytribe
+      POSTGRES_DB: mytribe_test
