@@ -35,7 +35,8 @@
 	},
 	"config": {
 		"docker": {
-			"dev": "docker-compose -f docker-compose.dev.yml"
+			"dev": "docker-compose -f docker-compose.dev.yml",
+			"test": "docker-compose -f docker-compose.test.yml"
 		}
 	},
 	"scripts": {
@@ -44,6 +45,7 @@
 		"migrate:make": "$npm_package_config_docker_dev run web npm run _migrate:make",
 		"rollback": "$npm_package_config_docker_dev run web npm run _rollback",
 		"autotest": "$npm_package_config_docker_test run sut npm run _test -- --watch --verbose",
+		"db:test:prepare": "$npm_package_config_docker_test run sut node -r ./babelhook.js test/support/initDb.js ",
 		"_build": "react-scripts build",
 		"_dev": "concurrently 'npm run _dev:backend' 'BROWSER=none npm run _dev:frontend'",
 		"_dev:backend": "nodemon --inspect=5858 -r ./babelhook.js ./server.js",
