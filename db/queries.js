@@ -1,10 +1,10 @@
-import { tx } from './db'
+import db from './db'
 
 export const addRandomMember = () => {
   const rand = Math.random()
 
-  return tx(t =>
-    t
+  return db.transaction(tx =>
+    tx
       .insert({
         displayName: `Mem-${rand}`,
         infos: {
@@ -25,8 +25,8 @@ export const addRandomMember = () => {
 }
 
 export const getMembers = () =>
-  tx(t =>
-    t.select().from('members').then(resp =>
+  db.transaction(tx =>
+    tx.select().from('members').then(resp =>
       resp.map(member => ({
         ...member,
         url: `/members/${member.slug}`,
@@ -36,8 +36,8 @@ export const getMembers = () =>
 
 //prettier-ignore
 export const findMemberBySlug = (slug) =>
-  tx(t =>
-    t.select()
+  db.transaction(tx =>
+    tx.select()
       .from('members')
       .where({ slug })
       .then((resp) => (resp[0]))
