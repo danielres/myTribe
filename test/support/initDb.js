@@ -1,6 +1,6 @@
-import knex from 'knex'
+import _knex from 'knex'
 
-const db = knex({
+const knex = _knex({
   client: 'pg',
   connection: {
     host: 'db',
@@ -10,7 +10,7 @@ const db = knex({
   pool: { min: 0, max: 7 },
 })
 
-db
+knex
   .raw(`CREATE DATABASE ${process.env.PGDB}`)
   .then(() => {
     console.log(`DB ${process.env.PGDB} READY`)
