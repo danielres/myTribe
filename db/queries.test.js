@@ -5,11 +5,10 @@ beforeEach(resetDb)
 afterAll(resetDb)
 
 describe('addRandomMember + getMembers', () => {
-  test('adds a random member + returns the list of members', done =>
-    getMembers()
-      .then(resp => expect(resp.length).toEqual(0))
-      .then(addRandomMember)
-      .then(getMembers)
-      .then(resp => expect(resp.length).toEqual(1))
-      .then(done))
+  test('adds a random member + returns the list of members', async (done) => {
+    expect((await getMembers()).length).toEqual(0)
+    await addRandomMember()
+    expect((await getMembers()).length).toEqual(1)
+    done()
+  })
 })
