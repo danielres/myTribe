@@ -12,10 +12,9 @@ services:
         - mhart/alpine-node:6
         - danielres/docker-react-node      
     volumes:
-      - src:/src
-    ports:
-      - 3000:3000
-      - 3001:3001
+    # ports:
+      # - 3000:3000
+      # - 3001:3001
     links:
       - db
     depends_on:
