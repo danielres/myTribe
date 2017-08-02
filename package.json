@@ -57,8 +57,8 @@
 		"_production": "npm run _migrate && ASSETS_MODE=static node -r ./babelhook.js ./server.js",
 		"_eject": "react-scripts eject",
 		"_lint": "eslint .",
-		"_test": "npm run _migrate && jest .",
-		"_test:ci": "yarn && npm run _test"
+		"_test": "jest .",
+		"_test:ci": "yarn && npm run _migrate && npm run _test"
 	},
 	"proxy": "http://localhost:3001"
 }
