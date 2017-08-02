@@ -1,3 +1,5 @@
+import Promise from 'bluebird'
+
 import db from './db'
 
 const playAddMemberEvent = event =>
@@ -24,6 +26,15 @@ export const playEvent = event => {
       break
   }
 }
+
+export const playEvents = () =>
+  db('events')
+    .orderBy('createdAt', 'asc')
+    .where({ isPlayed: false })
+    .then(events =>
+      Promise.all(events.map(event => playEvent(event)))
+    )
+    .catch(console.error)
 
 export const addMemberEvent = attrs =>
   db.insert({ type: 'addMember', attrs }).into('events')
