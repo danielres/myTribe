@@ -17,7 +17,9 @@ describe('addMemberEvent + getEvents', () => {
       slug: `jules`,
     }
     await addMemberEvent(attrs)
-    expect((await getEvents())[0].type).toEqual('addMember')
+    const entry = (await getEvents())[0]
+    expect(entry.type).toEqual('addMember')
+    expect(entry.attrs.slug).toEqual('jules')
     done()
   })
 })
