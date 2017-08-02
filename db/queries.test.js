@@ -4,11 +4,6 @@ import {
   findMemberBySlug,
   getMembers,
 } from './queries'
-import disconnectDb from '../test/support/disconnectDb'
-import resetDb from '../test/support/resetDb'
-
-beforeEach(resetDb)
-afterAll(() => resetDb().then(disconnectDb))
 
 describe('addRandomMember + getMembers', () => {
   test('adds a random member + returns the list of members', async done => {

@@ -40,6 +40,9 @@
 			"test": "docker-compose -f docker-compose.test.yml"
 		}
 	},
+	"jest": {
+		"setupTestFrameworkScriptFile": "<rootDir>/test/support/setup.js"
+	},
 	"scripts": {
 		"dev": "$npm_package_config_docker_dev up",
 		"migrate": "$npm_package_config_docker_dev run web npm run _migrate",

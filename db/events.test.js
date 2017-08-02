@@ -1,9 +1,4 @@
 import { addMemberEvent, getEvents } from './events'
-import disconnectDb from '../test/support/disconnectDb'
-import resetDb from '../test/support/resetDb'
-
-beforeEach(resetDb)
-afterAll(() => resetDb().then(disconnectDb))
 
 describe('addMemberEvent + getEvents', () => {
   test('adds an event of type "addMember" + returns the list of events ', async done => {
