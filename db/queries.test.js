@@ -5,17 +5,8 @@ import {
   getMembers,
 } from './queries'
 
-describe('addRandomMember + getMembers', () => {
-  test('adds a random member + returns the list of members', async done => {
-    expect((await getMembers()).length).toEqual(0)
-    await addRandomMember()
-    expect((await getMembers()).length).toEqual(1)
-    done()
-  })
-})
-
-describe('addMember + findMemberBySlug', () => {
-  test('adds a member + finds it by its slug', async done => {
+describe('addMember + findMemberBySlug + getMembers', () => {
+  test('adds a member + finds it by its slug + gets the list of members', async done => {
     const attrs = {
       displayName: `Tom`,
       infos: {
@@ -26,6 +17,7 @@ describe('addMember + findMemberBySlug', () => {
     }
     await addMember(attrs)
     expect((await findMemberBySlug('tom')).displayName).toEqual('Tom')
+    expect((await getMembers()).length).toEqual(1)
     done()
   })
 })
