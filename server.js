@@ -10,24 +10,32 @@ const app = express()
 const PORT = 3001
 const { ASSETS_MODE } = process.env
 
-app.get('/api/members', (req, res, next) => {
-  getMembers()
-    .then(resp => res.json(resp))
-    .catch(err => console.log(err))
+app.get('/api/members', async (req, res, next) => {
+  try {
+    res.json(await getMembers())
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-app.get('/api/members/add', (req, res, next) => {
-  addMemberEvent(randomMemberFactory())
-    .then(playEvents)
-    .then(getMembers)
-    .then(res.json.bind(res))
-    .catch(console.error)
+app.get('/api/members/add', async (req, res, next) => {
+  try {
+    await addMemberEvent(randomMemberFactory())
+    await playEvents()
+    const members = await getMembers()
+    res.json(members)
+  } catch (error) {
+    console.error(error)
+  }
 })
 
-app.get('/api/members/:slug', (req, res, next) => {
-  findMemberBySlug(req.params.slug)
-    .then(res.json.bind(res))
-    .catch(console.error)
+app.get('/api/members/:slug', async (req, res, next) => {
+  try {
+    const member = await findMemberBySlug(req.params.slug)
+    res.json(member)
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 if (ASSETS_MODE === 'static') {
