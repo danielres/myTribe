@@ -5,7 +5,7 @@ export const addMember = attrs =>
 
 export const getMembers = () =>
   db.transaction(tx =>
-    tx.select().from('members').then(resp =>
+    tx('members').then(resp =>
       resp.map(member => ({
         ...member,
         url: `/members/${member.slug}`,
@@ -13,11 +13,7 @@ export const getMembers = () =>
     )
   )
 
-//prettier-ignore
-export const findMemberBySlug = (slug) =>
+export const findMemberBySlug = slug =>
   db.transaction(tx =>
-    tx.select()
-      .from('members')
-      .where({ slug })
-      .then((resp) => (resp[0]))
+    tx('members').where({ slug }).then(resp => resp[0])
   )
