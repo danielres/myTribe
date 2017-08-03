@@ -1,8 +1,19 @@
 {
   "presets": [
     "react",
-    "stage-2",
-    "es2015"
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current",
+          "browsers": []
+        }
+      }
+    ]
   ],
-  "plugins": []
+  "plugins": [
+    [
+      "transform-object-rest-spread"
+    ]
+  ]
 }
