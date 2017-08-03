@@ -1,7 +1,6 @@
 import db from './db'
 
-export const addMember = attrs =>
-  db.transaction(tx => tx.insert(attrs).into('members'))
+export const addMember = attrs => db.insert(attrs).into('members')
 
 export const getMembers = () =>
   db('members').then(resp =>
