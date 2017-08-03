@@ -26,8 +26,8 @@ app.get('/api/members/add', (req, res, next) => {
 
 app.get('/api/members/:slug', (req, res, next) => {
   findMemberBySlug(req.params.slug)
-    .then(resp => res.json(resp))
-    .catch(err => console.log(err))
+    .then(res.json.bind(res))
+    .catch(console.error)
 })
 
 if (ASSETS_MODE === 'static') {
