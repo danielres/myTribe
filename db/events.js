@@ -10,7 +10,7 @@ const playAddMemberEvent = event =>
       .then(() =>
         db('events')
           .transacting(tx)
-          .where('uuid', '=', event.uuid)
+          .where('id', '=', event.id)
           .update({ isPlayed: true })
       )
       .then(tx.commit)
