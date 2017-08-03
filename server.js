@@ -4,6 +4,7 @@ import path from 'path'
 
 import { addMemberEvent, playEvents } from './db/events'
 import { findMemberBySlug, getMembers } from './db/queries'
+import randomMemberFactory from './factories/randomMemberFactory'
 
 const app = express()
 const PORT = 3001
@@ -16,24 +17,7 @@ app.get('/api/members', (req, res, next) => {
 })
 
 app.get('/api/members/add', (req, res, next) => {
-  const rand = Math.random()
-  const attrs = {
-    displayName: `Mem-${rand}`,
-    infos: {
-      addedAt: new Date(),
-      address: 'Sunny street',
-      email: `${rand}@example.com`,
-      fbProfileUrl: 'http://...',
-      firstName: 'Member',
-      introUrl: 'http://...',
-      lastName: `${rand}`,
-      phone: `+49 ${rand}`,
-    },
-    invitedBy: null,
-    slug: `mem-${rand}`,
-  }
-
-  addMemberEvent(attrs)
+  addMemberEvent(randomMemberFactory())
     .then(playEvents)
     .then(getMembers)
     .then(res.json.bind(res))
