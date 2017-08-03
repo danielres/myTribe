@@ -3,11 +3,8 @@ import express from 'express'
 
 import path from 'path'
 
-import {
-  addRandomMember,
-  findMemberBySlug,
-  getMembers,
-} from './db/queries'
+import { addMemberEvent, playEvents } from './db/events'
+import { findMemberBySlug, getMembers } from './db/queries'
 
 // dotenv.config()
 
@@ -22,10 +19,28 @@ app.get('/api/members', (req, res, next) => {
 })
 
 app.get('/api/members/add', (req, res, next) => {
-  addRandomMember()
+  const rand = Math.random()
+  const attrs = {
+    displayName: `Mem-${rand}`,
+    infos: {
+      addedAt: new Date(),
+      address: 'Sunny street',
+      email: `${rand}@example.com`,
+      fbProfileUrl: 'http://...',
+      firstName: 'Member',
+      introUrl: 'http://...',
+      lastName: `${rand}`,
+      phone: `+49 ${rand}`,
+    },
+    invitedBy: null,
+    slug: `mem-${rand}`,
+  }
+
+  addMemberEvent(attrs)
+    .then(playEvents)
     .then(getMembers)
-    .then(resp => res.json(resp))
-    .catch(err => console.log(err))
+    .then(res.json.bind(res))
+    .catch(console.error)
 })
 
 app.get('/api/members/:slug', (req, res, next) => {
