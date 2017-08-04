@@ -8,22 +8,6 @@ import PageTitle from './shared/PageTitle'
 
 const Wrapper = styled.section``
 
-const ObjectView = ({ object }) =>
-  <div>
-    {object &&
-      Object.keys(object).map(key =>
-        <dl key={key}>
-          <dt>
-            {key}:
-          </dt>
-          <dd>
-            {typeof object[key] === 'object'
-              ? <ObjectView object={object[key]} />
-              : object[key]}
-          </dd>
-        </dl>
-      )}
-  </div>
 class Logentries extends Component {
   componentDidMount() {
     const { fetchLogentries } = this.props
