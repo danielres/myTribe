@@ -1,28 +1,28 @@
+import request from 'supertest'
+
 import server from './server'
 
-var request = require('supertest')
+afterEach(done => server.close(done))
 
 describe('api', () => {
-  afterEach(done => server.close(done))
-
   test('POST /api/members + GET /api/members + GET /api/members/:slug', done => {
     const app = request(server)
+
     app
       .post('/api/members')
       .expect(200)
-      .then(resp => expect(resp.body).toHaveLength(1))
+      .then(({ body }) => expect(body).toHaveLength(1))
       .then(() =>
         app
           .get('/api/members')
           .expect(200)
-          .then(resp => {
-            expect(resp.body).toHaveLength(1)
-            return resp.body[0].slug
+          .then(({ body }) => {
+            expect(body).toHaveLength(1)
+            return body[0]
           })
-          .then(slug => app.get(`/api/members/${slug}`))
-          .then(resp => {
-            expect(resp.body).toHaveProperty('slug')
-            expect(resp.body).toHaveProperty('displayName')
+          .then(({ slug }) => app.get(`/api/members/${slug}`))
+          .then(({ body }) => {
+            expect(body).toHaveProperty('displayName')
           })
           .then(done)
       )
@@ -30,24 +30,24 @@ describe('api', () => {
 
   test('POST /api/members + GET /api/log + GET /api/log/:id', done => {
     const app = request(server)
+
     app
       .post('/api/members')
       .expect(200)
-      .then(resp => {
-        expect(resp.body).toHaveLength(1)
+      .then(({ body }) => {
+        expect(body).toHaveLength(1)
       })
       .then(() =>
         app
           .get('/api/log')
           .expect(200)
-          .then(resp => {
-            expect(resp.body).toHaveLength(1)
-            return resp.body[0].id
+          .then(({ body }) => {
+            expect(body).toHaveLength(1)
+            return body[0]
           })
-          .then(id => app.get(`/api/log/${id}`))
-          .then(resp => {
-            expect(resp.body).toHaveProperty('id')
-            expect(resp.body).toHaveProperty('attrs')
+          .then(({ id }) => app.get(`/api/log/${id}`))
+          .then(({ body }) => {
+            expect(body).toHaveProperty('type')
           })
           .then(done)
       )
