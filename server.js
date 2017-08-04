@@ -1,7 +1,5 @@
 import express from 'express'
 
-import path from 'path'
-
 import { addMember } from './storage/commands'
 import {
   findLogItemById,
