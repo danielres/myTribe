@@ -1,19 +1,23 @@
 import { addMember } from './commands'
 import { findMemberBySlug, getMembers } from './queries'
 
-describe('addMember + findMemberBySlug + getMembers', () => {
-  test('adds a member + finds it by its slug + gets the list of members', async done => {
-    const attrs = {
-      displayName: `Tom`,
-      infos: {
-        addedAt: new Date(),
-      },
-      invitedBy: null,
-      slug: `tom`,
-    }
-    await addMember(attrs)
+describe('findMemberBySlug', () => {
+  test('finds a member by its slug', async done => {
+    await addMember({ displayName: `Tom`, slug: `tom` })
+
     expect((await findMemberBySlug('tom')).displayName).toEqual('Tom')
-    expect((await getMembers()).length).toEqual(1)
+
+    done()
+  })
+})
+
+describe('getMembers', () => {
+  test('gets the list of members', async done => {
+    await addMember({ displayName: `Tom`, slug: `tom` })
+    await addMember({ displayName: `Jan`, slug: `jan` })
+
+    expect((await getMembers()).length).toEqual(2)
+
     done()
   })
 })
