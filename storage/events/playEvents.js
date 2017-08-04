@@ -2,7 +2,7 @@ import Promise from 'bluebird'
 
 import db from '../db'
 
-const playAddMemberEvent = event =>
+const playAddedMember = event =>
   db.transaction(tx =>
     db('members')
       .transacting(tx)
@@ -19,8 +19,8 @@ const playAddMemberEvent = event =>
 
 export const playEvent = event => {
   switch (event.type) {
-    case 'addMember':
-      return playAddMemberEvent(event)
+    case 'addedMember':
+      return playAddedMember(event)
       break
     default:
       break

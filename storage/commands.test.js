@@ -12,7 +12,7 @@ describe('addMember command', () => {
     await addMember({ displayName: `Felix`, slug: `felix` })
 
     expect((await getMembers())[0].slug).toEqual('felix')
-    expect((await getEvents())[0].type).toEqual('addMember')
+    expect((await getEvents())[0].type).toEqual('addedMember')
     expect((await getEvents())[0].attrs.slug).toEqual('felix')
 
     done()

@@ -16,7 +16,7 @@ export const getLogItems = () =>
     .map(decorateLogItem)
     .map(
       item =>
-        item.type === 'addMember'
+        item.type === 'addedMember'
           ? { ...item, attrs: decorateMember(item.attrs) }
           : item
     )
@@ -36,7 +36,7 @@ export const findLogItemById = id =>
     .then(resp => resp[0])
     .then(
       item =>
-        item.type === 'addMember'
+        item.type === 'addedMember'
           ? { ...item, attrs: decorateMember(item.attrs) }
           : item
     )

@@ -1,7 +1,7 @@
 import { playEvents } from './events/playEvents'
-import addMemberEvent from './events/addMemberEvent'
+import addedMember from './events/addedMember'
 
 export const addMember = async attrs => {
-  await addMemberEvent(attrs)
+  await addedMember(attrs)
   await playEvents()
 }
