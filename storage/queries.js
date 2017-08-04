@@ -1,12 +1,11 @@
 import db from './db'
 
-export const getMembers = () =>
-  db('members').then(resp =>
-    resp.map(member => ({
-      ...member,
-      url: `/members/${member.slug}`,
-    }))
-  )
+const addUrl = member => ({
+  ...member,
+  url: `/members/${member.slug}`,
+})
+
+export const getMembers = () => db('members').map(addUrl)
 
 export const findMemberBySlug = slug =>
-  db('members').where({ slug }).then(resp => resp[0])
+  db('members').where({ slug }).map(addUrl).then(resp => resp[0])
