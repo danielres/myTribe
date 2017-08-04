@@ -31,8 +31,9 @@ class Member extends Component {
             style={{ textDecoration: 'underline', cursor: 'pointer' }}
           >
             Members
-          </span>{' '}
-          / {member.displayName}
+          </span>
+          {' / '}
+          {member.displayName}
         </PageTitle>
 
         <Profile person={member} />

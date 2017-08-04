@@ -19,7 +19,8 @@ const Wrapper = styled.section`
   outline: 1px solid #aaa;
 `
 
-injectGlobal`
+//eslint-disable-next-line no-unused-expressions
+injectGlobal` 
   body {
     background: #eee;
   }
