@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Entry from './shared/Entry'
 import LinkTo from './shared/LinkTo'
 import PageTitle from './shared/PageTitle'
-import formatDate from './shared/formatDate'
+import formatDate, { fromNow } from './shared/formatDate'
 
 const Wrapper = styled.section``
 
@@ -14,8 +14,8 @@ const LogItem = ({ item }) => {
 
   const DateLine = () =>
     <div>
-      <small>
-        {formatDate(item.createdAt)}
+      <small title={formatDate(item.createdAt)}>
+        {fromNow(item.createdAt)}
       </small>
     </div>
 
