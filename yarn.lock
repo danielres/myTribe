@@ -1327,10 +1327,6 @@ chalk@^2.0.0, chalk@^2.0.1:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
-check-more-types@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/check-more-types/-/check-more-types-2.3.0.tgz#b8397c69dc92a3e645f18932c045b09c74419ec4"
-
 chokidar@^1.4.3, chokidar@^1.6.0, chokidar@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.7.0.tgz#798e689778151c8076b4b360e5edd28cda2bb468"
@@ -4154,10 +4150,6 @@ latest-version@^2.0.0:
   dependencies:
     package-json "^2.0.0"
 
-lazy-ass@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/lazy-ass/-/lazy-ass-1.3.0.tgz#7d0d14eef3ec9702c6f30c60ea81f1a8d3f900fb"
-
 lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
@@ -4540,6 +4532,10 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 ms@2.0.0:
   version "2.0.0"
@@ -5796,13 +5792,6 @@ readline2@^1.0.1:
     code-point-at "^1.0.0"
     is-fullwidth-code-point "^1.0.0"
     mute-stream "0.0.5"
-
-really-need@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/really-need/-/really-need-1.9.2.tgz#026a7ebb0509f53f3dfda7c93feb8ef5314cdd31"
-  dependencies:
-    check-more-types "2.3.0"
-    lazy-ass "1.3.0"
 
 rechoir@^0.6.2:
   version "0.6.2"
