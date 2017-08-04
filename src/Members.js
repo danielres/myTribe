@@ -8,8 +8,19 @@ import PageTitle from './shared/PageTitle'
 
 const Wrapper = styled.section``
 
+const Grid = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  > * {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+`
+const Button = styled.button`padding: 10px;`
+
 const AddMemberButton = ({ onClick }) =>
-  <button onClick={onClick}>add</button>
+  <Button onClick={onClick}>add</Button>
 
 class Members extends Component {
   componentDidMount() {
@@ -22,9 +33,10 @@ class Members extends Component {
 
     return (
       <Wrapper>
-        <PageTitle>Members</PageTitle>
-
-        <AddMemberButton onClick={onAddMember} />
+        <Grid>
+          <PageTitle>Members</PageTitle>
+          <AddMemberButton onClick={onAddMember} />
+        </Grid>
 
         <div className="entries">
           {members.map(member =>
