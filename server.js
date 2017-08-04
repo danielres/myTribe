@@ -40,7 +40,7 @@ app.get('/api/members', async (req, res, next) => {
   }
 })
 
-app.get('/api/members/add', async (req, res, next) => {
+app.post('/api/members', async (req, res, next) => {
   try {
     await addMember(randomMemberFactory())
     const members = await getMembers(randomMemberFactory())
@@ -70,4 +70,4 @@ if (ASSETS_MODE === 'static') {
 }
 
 console.log('running server on port ' + PORT)
-app.listen(PORT)
+export default app.listen(PORT)
