@@ -29,9 +29,7 @@ export const playEvent = event => {
 
 export const playEvents = () =>
   db('events')
-    .orderBy('createdAt', 'asc')
     .where({ isPlayed: false })
-    .then(events =>
-      Promise.all(events.map(event => playEvent(event)))
-    )
+    .orderBy('createdAt', 'asc')
+    .then(events => Promise.all(events.map(playEvent)))
     .catch(console.error)
