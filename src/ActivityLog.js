@@ -5,24 +5,33 @@ import styled from 'styled-components'
 import Entry from './shared/Entry'
 import LinkTo from './shared/LinkTo'
 import PageTitle from './shared/PageTitle'
+import formatDate from './shared/formatDate'
 
 const Wrapper = styled.section``
 
 const LogItem = ({ item }) => {
   const author = item.addedBy || 'Admin'
 
+  const DateLine = () =>
+    <div>
+      <small>
+        {formatDate(item.createdAt)}
+      </small>
+    </div>
+
   switch (item.type) {
     case 'addedMember':
       return (
         <div>
-          {author} {item.type} {item.attrs.displayName} on{' '}
-          {item.createdAt}
+          <DateLine />
+          {author} {item.type} {item.attrs.displayName}
         </div>
       )
     default:
       return (
         <div>
-          {author} {item.type} on {item.createdAt}
+          <DateLine />
+          {author} {item.type}
         </div>
       )
   }
