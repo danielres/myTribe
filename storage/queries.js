@@ -1,14 +1,42 @@
 import db from './db'
 
-const addUrl = member => ({
+const decorateMember = member => ({
   ...member,
   url: `/members/${member.slug}`,
 })
 
-export const getLogItems = () =>
-  db('events').orderBy('createdAt', 'desc')
+const decorateLogItem = item => ({
+  ...item,
+  url: `/log/${item.id}`,
+})
 
-export const getMembers = () => db('members').map(addUrl)
+export const getLogItems = () =>
+  db('events')
+    .orderBy('createdAt', 'desc')
+    .map(decorateLogItem)
+    .map(
+      item =>
+        item.type === 'addMember'
+          ? { ...item, attrs: decorateMember(item.attrs) }
+          : item
+    )
+
+export const getMembers = () => db('members').map(decorateMember)
 
 export const findMemberBySlug = slug =>
-  db('members').where({ slug }).map(addUrl).then(resp => resp[0])
+  db('members')
+    .where({ slug })
+    .map(decorateMember)
+    .then(resp => resp[0])
+
+export const findLogItemById = id =>
+  db('events')
+    .where({ id })
+    .map(decorateLogItem)
+    .then(resp => resp[0])
+    .then(
+      item =>
+        item.type === 'addMember'
+          ? { ...item, attrs: decorateMember(item.attrs) }
+          : item
+    )

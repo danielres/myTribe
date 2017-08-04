@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import Entry from './shared/Entry'
+import LinkTo from './shared/LinkTo'
 import PageTitle from './shared/PageTitle'
 
 const Wrapper = styled.section``
@@ -38,17 +39,14 @@ class Logentries extends Component {
 
         <div className="entries">
           {entries.map(entry =>
-            <Entry key={entry.id}>
-              <div>
-                <b>
-                  {entry.type}
-                </b>
-                <br />
-                {entry.createdAt}
-              </div>
-
-              <ObjectView object={entry.attrs} />
-            </Entry>
+            <LinkTo key={entry.id} target={entry.url}>
+              <Entry>
+                <div>
+                  {entry.type} {' - '}
+                  {entry.createdAt}
+                </div>
+              </Entry>
+            </LinkTo>
           )}
         </div>
       </Wrapper>

@@ -6,6 +6,7 @@ import styled, { injectGlobal } from 'styled-components'
 
 import About from './About'
 import ActivityLog from './ActivityLog'
+import ActivityLogItem from './ActivityLogItem'
 import Member from './Member'
 import Members from './Members'
 import Menu from './Menu'
@@ -32,6 +33,11 @@ class App extends Component {
           <Wrapper>
             <Menu />
             <Route exact path="/" component={ActivityLog} />
+            <Route
+              exact
+              path="/log/:id"
+              component={ActivityLogItem}
+            />
             <Route exact path="/members" component={Members} />
             <Route exact path="/members/:id" component={Member} />
             <Route exact path="/about" component={About} />

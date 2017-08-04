@@ -4,6 +4,7 @@ import path from 'path'
 
 import { addMember } from './storage/commands'
 import {
+  findLogItemById,
   findMemberBySlug,
   getLogItems,
   getMembers,
@@ -17,6 +18,15 @@ const { ASSETS_MODE } = process.env
 app.get('/api/log', async (req, res, next) => {
   try {
     res.json(await getLogItems())
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+app.get('/api/log/:id', async (req, res, next) => {
+  try {
+    const item = await findLogItemById(req.params.id)
+    res.json(item)
   } catch (error) {
     console.error(error)
   }
