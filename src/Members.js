@@ -8,6 +8,9 @@ import PageTitle from './shared/PageTitle'
 
 const Wrapper = styled.section``
 
+const AddMemberButton = ({ onClick }) =>
+  <button onClick={onClick}>add</button>
+
 class Members extends Component {
   componentDidMount() {
     const { fetchMembers } = this.props
@@ -15,11 +18,13 @@ class Members extends Component {
   }
 
   render() {
-    const { members } = this.props
+    const { members, onAddMember } = this.props
 
     return (
       <Wrapper>
         <PageTitle>Members</PageTitle>
+
+        <AddMemberButton onClick={onAddMember} />
 
         <div className="entries">
           {members.map(member =>
@@ -44,6 +49,10 @@ const Connected = connectLean({
     fetch('/api/members')
       .then(res => res.json())
       .then(members => this.setState({ members }))
+  },
+
+  onAddMember() {
+    fetch('/api/members', { method: 'post' }).then(this.fetchMembers)
   },
 })(Members)
 
