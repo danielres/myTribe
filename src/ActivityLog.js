@@ -1,5 +1,6 @@
 import { connectLean } from 'lean-redux'
 import React, { Component } from 'react'
+import noCase from 'no-case'
 import styled from 'styled-components'
 
 import Entry from './shared/Entry'
@@ -24,7 +25,7 @@ const LogItem = ({ item }) => {
       return (
         <div>
           <DateLine />
-          {author} {item.type} {item.attrs.displayName}
+          {author} {noCase(item.type)} {item.attrs.displayName}
         </div>
       )
     default:
