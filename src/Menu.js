@@ -22,7 +22,7 @@ const Wrapper = styled.section`background: #000;`
 
 const ButtonWrapper = styled.div`
   text-align: right;
-  padding: 10px;
+  padding: 10px 20px;
 `
 
 const Button = styled.button`
