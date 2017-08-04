@@ -2,7 +2,7 @@ import express from 'express'
 
 import path from 'path'
 
-import { addMemberEvent, playEvents } from './storage/events'
+import { addMember } from './storage/commands'
 import { findMemberBySlug, getMembers } from './storage/queries'
 import randomMemberFactory from './factories/randomMemberFactory'
 
@@ -20,9 +20,8 @@ app.get('/api/members', async (req, res, next) => {
 
 app.get('/api/members/add', async (req, res, next) => {
   try {
-    await addMemberEvent(randomMemberFactory())
-    await playEvents()
-    const members = await getMembers()
+    await addMember(randomMemberFactory())
+    const members = await getMembers(randomMemberFactory())
     res.json(members)
   } catch (error) {
     console.error(error)

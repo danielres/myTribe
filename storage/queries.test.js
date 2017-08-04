@@ -1,9 +1,5 @@
-import {
-  addMember,
-  addRandomMember,
-  findMemberBySlug,
-  getMembers,
-} from './queries'
+import { addMember } from './commands'
+import { findMemberBySlug, getMembers } from './queries'
 
 describe('addMember + findMemberBySlug + getMembers', () => {
   test('adds a member + finds it by its slug + gets the list of members', async done => {

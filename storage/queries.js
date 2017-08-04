@@ -1,7 +1,5 @@
 import db from './db'
 
-export const addMember = attrs => db.insert(attrs).into('members')
-
 export const getMembers = () =>
   db('members').then(resp =>
     resp.map(member => ({
