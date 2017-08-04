@@ -2,8 +2,8 @@ import express from 'express'
 
 import path from 'path'
 
-import { addMemberEvent, playEvents } from './db/events'
-import { findMemberBySlug, getMembers } from './db/queries'
+import { addMemberEvent, playEvents } from './storage/events'
+import { findMemberBySlug, getMembers } from './storage/queries'
 import randomMemberFactory from './factories/randomMemberFactory'
 
 const app = express()

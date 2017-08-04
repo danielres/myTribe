@@ -1,11 +1,11 @@
 import Promise from 'bluebird'
 
-import db from '../../db/db'
+import db from '../../storage/db'
 
 export default done =>
   db
     .raw(
-      `SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname='public'`
+    `SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname='public'`
     )
     .then(({ rows }) =>
       rows.map(r => r.tablename).filter(r => !r.includes('knex'))
