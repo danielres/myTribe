@@ -5,6 +5,9 @@ const addUrl = member => ({
   url: `/members/${member.slug}`,
 })
 
+export const getLogItems = () =>
+  db('events').orderBy('createdAt', 'desc')
+
 export const getMembers = () => db('members').map(addUrl)
 
 export const findMemberBySlug = slug =>

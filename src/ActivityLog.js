@@ -1,18 +1,37 @@
+import { connectLean } from 'lean-redux'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import Entry from './shared/Entry'
 import PageTitle from './shared/PageTitle'
 
-const entries = [
-  { id: 1, name: 'Entry 1' },
-  { id: 2, name: 'Entry 2' },
-]
-
 const Wrapper = styled.section``
 
-class ActivityLog extends Component {
+const ObjectView = ({ object }) =>
+  <div>
+    {object &&
+      Object.keys(object).map(key =>
+        <dl key={key}>
+          <dt>
+            {key}:
+          </dt>
+          <dd>
+            {typeof object[key] === 'object'
+              ? <ObjectView object={object[key]} />
+              : object[key]}
+          </dd>
+        </dl>
+      )}
+  </div>
+class Logentries extends Component {
+  componentDidMount() {
+    const { fetchLogentries } = this.props
+    fetchLogentries()
+  }
+
   render() {
+    const { entries } = this.props
+
     return (
       <Wrapper>
         <PageTitle>Activity</PageTitle>
@@ -20,9 +39,15 @@ class ActivityLog extends Component {
         <div className="entries">
           {entries.map(entry =>
             <Entry key={entry.id}>
-              {entry.id}
-              {' - '}
-              {entry.name}
+              <div>
+                <b>
+                  {entry.type}
+                </b>
+                <br />
+                {entry.createdAt}
+              </div>
+
+              <ObjectView object={entry.attrs} />
             </Entry>
           )}
         </div>
@@ -31,4 +56,16 @@ class ActivityLog extends Component {
   }
 }
 
-export default ActivityLog
+const Connected = connectLean({
+  getInitialState() {
+    return { entries: [] }
+  },
+
+  fetchLogentries() {
+    fetch('/api/log')
+      .then(res => res.json())
+      .then(entries => this.setState({ entries }))
+  },
+})(Logentries)
+
+export default Connected

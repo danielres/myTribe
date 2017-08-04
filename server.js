@@ -3,12 +3,24 @@ import express from 'express'
 import path from 'path'
 
 import { addMember } from './storage/commands'
-import { findMemberBySlug, getMembers } from './storage/queries'
+import {
+  findMemberBySlug,
+  getLogItems,
+  getMembers,
+} from './storage/queries'
 import randomMemberFactory from './factories/randomMemberFactory'
 
 const app = express()
 const PORT = 3001
 const { ASSETS_MODE } = process.env
+
+app.get('/api/log', async (req, res, next) => {
+  try {
+    res.json(await getLogItems())
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 app.get('/api/members', async (req, res, next) => {
   try {
