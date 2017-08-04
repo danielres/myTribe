@@ -8,6 +8,26 @@ import PageTitle from './shared/PageTitle'
 
 const Wrapper = styled.section``
 
+const LogItem = ({ item }) => {
+  const author = item.addedBy || 'Admin'
+
+  switch (item.type) {
+    case 'addedMember':
+      return (
+        <div>
+          {author} {item.type} {item.attrs.displayName} on{' '}
+          {item.createdAt}
+        </div>
+      )
+    default:
+      return (
+        <div>
+          {author} {item.type} on {item.createdAt}
+        </div>
+      )
+  }
+}
+
 class Logentries extends Component {
   componentDidMount() {
     const { fetchLogentries } = this.props
@@ -22,16 +42,14 @@ class Logentries extends Component {
         <PageTitle>Activity</PageTitle>
 
         <div className="entries">
-          {entries.map(entry =>
-            <LinkTo key={entry.id} target={entry.url}>
-              <Entry>
-                <div>
-                  {entry.type} {' - '}
-                  {entry.createdAt}
-                </div>
-              </Entry>
-            </LinkTo>
-          )}
+          {entries &&
+            entries.map(entry =>
+              <LinkTo key={entry.id} target={entry.url}>
+                <Entry>
+                  <LogItem item={entry} />
+                </Entry>
+              </LinkTo>
+            )}
         </div>
       </Wrapper>
     )
