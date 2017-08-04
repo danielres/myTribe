@@ -1,6 +1,6 @@
 import Promise from 'bluebird'
 
-import db from './db'
+import db from '../db'
 
 const playAddMemberEvent = event =>
   db.transaction(tx =>
@@ -35,9 +35,3 @@ export const playEvents = () =>
       Promise.all(events.map(event => playEvent(event)))
     )
     .catch(console.error)
-
-export const addMemberEvent = attrs =>
-  db.insert({ type: 'addMember', attrs }).into('events')
-
-export const getEvents = () =>
-  db.transaction(tx => tx.select().from('events'))
