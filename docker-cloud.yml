@@ -24,8 +24,6 @@ services:
       PGPASSWORD: "${PGPASSWORD}"
       PGUSER: "${PGUSER}"
       PGDB: "${PGDB}"
-    volumes:
-      - /src/node_modules
 
   db:
     image: postgres
