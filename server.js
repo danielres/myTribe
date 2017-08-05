@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser'
 import express from 'express'
 
 import path from 'path'
@@ -14,6 +15,8 @@ import randomMemberFactory from './factories/randomMemberFactory'
 const app = express()
 const PORT = 3001
 const { ASSETS_MODE } = process.env
+
+app.use(bodyParser.json())
 
 app.get('/api/log', async (req, res, next) => {
   try {
@@ -42,9 +45,9 @@ app.get('/api/members', async (req, res, next) => {
 
 app.post('/api/members', async (req, res, next) => {
   try {
-    await addMember(randomMemberFactory())
-    const members = await getMembers(randomMemberFactory())
-    res.json(members)
+    await addMember(req.body)
+    res.status(201)
+    res.json(req.body)
   } catch (error) {
     console.error(error)
   }
