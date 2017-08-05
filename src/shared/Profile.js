@@ -5,7 +5,6 @@ import LinkTo from './LinkTo'
 
 const Profile = ({ handleClickTo, person }) =>
   <div className="entries">
-    {console.log(person.infos)}
     <LinkTo target={person.invitedBy}>
       <Entry>
         Added by: {person.invitedBy}
