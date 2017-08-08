@@ -4,10 +4,12 @@ import db from '../../db/db'
 const getEvents = async () => await db('events').select()
 
 describe('addedMember event', () => {
-  test('adds an event of type "addedMember" ', async done => {
+  test('inserts an event of type "addedMember" using a passed transaction', async done => {
     expect(await getEvents()).toHaveLength(0)
 
-    await addedMember({ displayName: 'Jules', slug: 'jules' })
+    const attrs = { displayName: 'Jules', slug: 'jules' }
+
+    await db.transaction(tx => addedMember(tx, attrs))
 
     expect(await getEvents()).toHaveLength(1)
     expect((await getEvents())[0].type).toEqual('addedMember')
