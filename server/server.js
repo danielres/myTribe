@@ -3,13 +3,13 @@ import express from 'express'
 
 import path from 'path'
 
-import { addMember } from './storage/commands'
+import { addMember } from './commands/addMember'
 import {
   findLogItemById,
   findMemberBySlug,
   getLogItems,
   getMembers,
-} from './storage/queries'
+} from './queries/queries'
 import randomMemberFactory from './factories/randomMemberFactory'
 
 const app = express()

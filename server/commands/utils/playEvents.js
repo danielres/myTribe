@@ -1,6 +1,6 @@
 import Promise from 'bluebird'
 
-import db from '../db'
+import db from '../../db/db'
 
 const playAddedMember = event =>
   db.transaction(tx =>
@@ -13,8 +13,6 @@ const playAddedMember = event =>
           .where('id', '=', event.id)
           .update({ isPlayed: true })
       )
-      .then(tx.commit)
-      .catch(tx.rollback)
   )
 
 export const playEvent = event => {
@@ -32,4 +30,3 @@ export const playEvents = () =>
     .where({ isPlayed: false })
     .orderBy('createdAt', 'asc')
     .then(events => Promise.all(events.map(playEvent)))
-    .catch(console.error)

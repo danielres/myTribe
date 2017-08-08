@@ -1,4 +1,4 @@
-import { addMember } from './commands'
+import { addMember } from '../commands/addMember'
 import { findMemberBySlug, getMembers } from './queries'
 
 describe('findMemberBySlug', () => {

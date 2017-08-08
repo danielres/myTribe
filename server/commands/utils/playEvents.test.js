@@ -1,7 +1,7 @@
-import { getMembers } from '../queries'
+import { getMembers } from '../../queries/queries'
 import { playEvent, playEvents } from './playEvents'
-import addedMember from './addedMember'
-import db from '../db'
+import addedMember from '../events/addedMember'
+import db from '../../db/db'
 
 const getEvents = async () => await db('events').select()
 

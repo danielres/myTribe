@@ -1,5 +1,5 @@
-import { addMember } from './commands'
-import db from './db'
+import { addMember } from './addMember'
+import db from '../db/db'
 
 const getMembers = async () => await db('members').select()
 const getEvents = async () => await db('events').select()
