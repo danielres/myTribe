@@ -31,6 +31,8 @@ services:
       POSTGRES_PASSWORD: "${PGPASSWORD}"
       POSTGRES_USER: "${PGUSER}"
       POSTGRES_DB: "${PGDB}"
+    volumes: 
+      - pgdata:/var/lib/postgresql/data
     depends_on:
       - auth
 
