@@ -1,6 +1,8 @@
-import { connectLean } from 'lean-redux'
+import { Control, LocalForm, actions } from 'react-redux-form'
 import React, { Component } from 'react'
 import styled from 'styled-components'
+
+const Button = styled.button`padding: 10px;`
 
 const Grid = styled.div`
   display: flex;
@@ -11,8 +13,6 @@ const Grid = styled.div`
     margin-right: 20px;
   }
 `
-const Form = styled.form`margin-bottom: 10px;`
-
 const FormRow = styled(({ children, className }) =>
   <Grid className={className}>
     {children}
@@ -27,107 +27,75 @@ const FormRow = styled(({ children, className }) =>
   label:after {content: ':'}
 `
 
-const Button = styled.button`padding: 10px;`
+const initialState = { infos: {} }
 
-class MemberForm extends Component {
-  componentDidMount() {}
+export default class extends Component {
+  constructor(props) {
+    super(props)
+    this.resetForm = this.resetForm.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  resetForm() {
+    this.formDispatch(actions.change('member', initialState))
+  }
+
+  onSubmit(values) {
+    fetch('/api/members', {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'post',
+      body: JSON.stringify(values),
+    })
+      .then(this.props.onSubmit)
+      .then(this.resetForm)
+  }
 
   render() {
-    const {
-      member,
-      onFormSubmit,
-      setInfoValue,
-      setValue,
-    } = this.props
-
     return (
-      <Form
-        onSubmit={e => {
-          e.preventDefault()
-          onFormSubmit()
-        }}
+      <LocalForm
+        getDispatch={dispatch => (this.formDispatch = dispatch)}
+        initialState={initialState}
+        model="member"
+        onSubmit={this.onSubmit}
       >
         <FormRow>
           <label htmlFor="firstname">First name</label>
-          <input
-            id="firstname"
-            type="text"
-            value={member.infos.firstname || ''}
-            onChange={e =>
-              setInfoValue({ firstname: e.target.value })}
-          />
+          <Control.text model=".infos.firstname" />
         </FormRow>
         <FormRow>
           <label htmlFor="lastname">Lastname</label>
-          <input
-            id="lastname"
-            type="text"
-            value={member.infos.lastname || ''}
-            onChange={e => setInfoValue({ lastname: e.target.value })}
-          />
+          <Control.text model=".infos.lastname" />
         </FormRow>
         <FormRow>
           <label htmlFor="displayName">Display name</label>
-          <input
-            id="displayName"
-            type="text"
-            value={member.displayName || ''}
-            onChange={e => setValue({ displayName: e.target.value })}
-          />
-        </FormRow>
-        <FormRow>
-          <label htmlFor="address">Address</label>
-          <textarea
-            id="address"
-            value={member.infos.address || ''}
-            onChange={e => setInfoValue({ address: e.target.value })}
-          />
-        </FormRow>
-        <FormRow>
-          <label htmlFor="fbProfileUrl">FB profile URL</label>
-          <input
-            id="fbProfileUrl"
-            type="text"
-            value={member.infos.fbProfileUrl || ''}
-            onChange={e =>
-              setInfoValue({ fbProfileUrl: e.target.value })}
-          />
-        </FormRow>
-        <FormRow>
-          <label htmlFor="introUrl">Intro URL</label>
-          <input
-            id="introUrl"
-            type="text"
-            value={member.infos.introUrl || ''}
-            onChange={e => setInfoValue({ introUrl: e.target.value })}
-          />
-        </FormRow>
-        <FormRow>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="text"
-            value={member.infos.email || ''}
-            onChange={e => setInfoValue({ email: e.target.value })}
-          />
-        </FormRow>
-        <FormRow>
-          <label htmlFor="phone">Phone</label>
-          <input
-            id="phone"
-            type="text"
-            value={member.infos.phone || ''}
-            onChange={e => setInfoValue({ phone: e.target.value })}
-          />
+          <Control.text model=".displayName" />
         </FormRow>
         <FormRow>
           <label htmlFor="slug">Slug</label>
-          <input
-            id="slug"
-            type="text"
-            value={member.slug || ''}
-            onChange={e => setValue({ slug: e.target.value })}
-          />
+          <Control.text model=".slug" />
+        </FormRow>
+        <FormRow>
+          <label htmlFor="address">Address</label>
+          <Control.textarea model=".infos.address" />
+        </FormRow>
+        <FormRow>
+          <label htmlFor="fbProfileUrl">FB profile URL</label>
+          <Control.text model=".infos.fbProfileUrl" />
+        </FormRow>
+        <FormRow>
+          <label htmlFor="introUrl">Intro URL</label>
+          <Control.text model=".infos.introUrl" />
+        </FormRow>
+        <FormRow>
+          <label htmlFor="email">Email</label>
+          <Control.text model=".infos.email" />
+        </FormRow>
+        <FormRow>
+          <label htmlFor="phone">Phone</label>
+          <Control.text model=".infos.phone" />
         </FormRow>
         <FormRow>
           <div />
@@ -135,47 +103,7 @@ class MemberForm extends Component {
             <Button>Save</Button>
           </div>
         </FormRow>
-      </Form>
+      </LocalForm>
     )
   }
 }
-
-const Connected = connectLean({
-  scope: 'MemberForm',
-
-  getInitialState() {
-    return { member: { infos: {} } }
-  },
-
-  resetState() {
-    this.setState(this.getInitialState())
-  },
-
-  onFormSubmit() {
-    fetch('/api/members', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'post',
-      body: JSON.stringify(this.state.member),
-    })
-      .then(this.props.onSubmit)
-      .then(this.resetState)
-  },
-
-  setValue(value) {
-    this.setState({ member: { ...this.state.member, ...value } })
-  },
-
-  setInfoValue(value) {
-    this.setState({
-      member: {
-        ...this.state.member,
-        infos: { ...this.state.member.infos, ...value },
-      },
-    })
-  },
-})(MemberForm)
-
-export default Connected
