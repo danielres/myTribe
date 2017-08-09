@@ -1,16 +1,31 @@
-import { Control, LocalForm, actions } from 'react-redux-form'
+import { Control, Errors, LocalForm, actions } from 'react-redux-form'
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
+
+//eslint-disable-next-line no-unused-expressions
+injectGlobal` 
+  .error {
+    font-size: small;
+    color: red;
+  }
+`
 
 const Button = styled.button`padding: 10px;`
 
 const Grid = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: start;
+  text-align: right;
   > * {
-    margin-left: 20px;
-    margin-right: 20px;
+    flex: 1;
+    :nth-child(1) {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    :nth-child(2) {
+      margin-right: 20px;
+    }
   }
 `
 const FormRow = styled(({ children, className }) =>
@@ -21,13 +36,15 @@ const FormRow = styled(({ children, className }) =>
   margin-bottom: 5px;
   input,
   textarea {
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
   }
   label:after {content: ':'}
 `
 
 const initialState = { infos: {} }
+
+const isRequired = val => val && val.length > 0
 
 export default class extends Component {
   constructor(props) {
@@ -62,40 +79,72 @@ export default class extends Component {
         onSubmit={this.onSubmit}
       >
         <FormRow>
-          <label htmlFor="firstname">First name</label>
-          <Control.text model=".infos.firstname" />
+          <label htmlFor="member.infos.firstname">First name</label>
+          <div>
+            <Control.text model="member.infos.firstname" />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="lastname">Lastname</label>
-          <Control.text model=".infos.lastname" />
+          <label htmlFor="member.infos.lastname">Lastname</label>
+          <div>
+            <Control.text model="member.infos.lastname" />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="displayName">Display name</label>
-          <Control.text model=".displayName" />
+          <label htmlFor="member.displayName">Display name</label>
+          <div>
+            <Control.text
+              model="member.displayName"
+              validators={{ isRequired }}
+            />
+            <Errors
+              component={({ children }) =>
+                <div className="error">
+                  {children}
+                </div>}
+              messages={{ isRequired: 'Required.' }}
+              model="member.displayName"
+              show={field => field.touched && !field.valid}
+            />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="slug">Slug</label>
-          <Control.text model=".slug" />
+          <label htmlFor="member.slug">Slug</label>
+          <div>
+            <Control.text model="member.slug" />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="address">Address</label>
-          <Control.textarea model=".infos.address" />
+          <label htmlFor="member.infos.address">Address</label>
+          <div>
+            <Control.textarea model="member.infos.address" />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="fbProfileUrl">FB profile URL</label>
-          <Control.text model=".infos.fbProfileUrl" />
+          <label htmlFor="member.infos.fbProfileUrl">
+            FB profile URL
+          </label>
+          <div>
+            <Control.text model="member.infos.fbProfileUrl" />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="introUrl">Intro URL</label>
-          <Control.text model=".infos.introUrl" />
+          <label htmlFor="member.infos.introUrl">Intro URL</label>
+          <div>
+            <Control.text model="member.infos.introUrl" />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="email">Email</label>
-          <Control.text model=".infos.email" />
+          <label htmlFor="member.infos.email">Email</label>
+          <div>
+            <Control.text model="member.infos.email" type="email" />
+          </div>
         </FormRow>
         <FormRow>
-          <label htmlFor="phone">Phone</label>
-          <Control.text model=".infos.phone" />
+          <label htmlFor="member.infos.phone">Phone</label>
+          <div>
+            <Control.text model="member.infos.phone" />
+          </div>
         </FormRow>
         <FormRow>
           <div />
